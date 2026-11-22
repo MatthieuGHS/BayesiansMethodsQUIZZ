@@ -1,0 +1,505 @@
+@import 'tailwindcss';
+
+/* ui-ux-pro-max: "Minimal Single Column", palette "Focus blue + session green",
+   pairing "Academic/Research" (Crimson Pro + Atkinson Hyperlegible). */
+:root {
+  color-scheme: light;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --sunken: #eef2f8;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #d9e1ec;
+  --control: #8290a5;
+  --primary: #2563eb;
+  --on-primary: #ffffff;
+  --primary-soft: #eaf1fe;
+  --ok: #059669;
+  --ok-ink: #05603f;
+  --ok-soft: #e7f6ef;
+  --bad: #dc2626;
+  --bad-ink: #a51d1d;
+  --bad-soft: #fcedee;
+  --idle: #8795a9;
+  --note-ink: #7c4a03;
+  --note-soft: #fcefd9;
+  --on-fill: #ffffff;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #10151d;
+  --surface: #181f2a;
+  --sunken: #222b38;
+  --ink: #e3e8ef;
+  --muted: #a5b1c2;
+  --line: #2c3645;
+  --control: #6d7b90;
+  --primary: #8ab4ff;
+  --on-primary: #0b1730;
+  --primary-soft: #1b2b47;
+  --ok: #3fc493;
+  --ok-ink: #7fe0b8;
+  --ok-soft: #142d27;
+  --bad: #ef7474;
+  --bad-ink: #f7a5a5;
+  --bad-soft: #342027;
+  --idle: #68768b;
+  --note-ink: #f2c57c;
+  --note-soft: #392c19;
+  --on-fill: #10151d;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-ok: var(--ok);
+  --color-ok-ink: var(--ok-ink);
+  --color-bad: var(--bad);
+  --color-bad-ink: var(--bad-ink);
+  --color-idle: var(--idle);
+  --color-note: var(--note-ink);
+  --color-note-soft: var(--note-soft);
+  --font-sans: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-serif: 'Crimson Pro Variable', Georgia, serif;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--ink);
+    /* Keeps focused elements clear of the two sticky bars. */
+    scroll-padding-block: 13rem 5.5rem;
+  }
+  @media (min-width: 68rem) {
+    html {
+      scroll-padding-top: 5rem;
+    }
+  }
+  body {
+    @apply font-sans text-base leading-relaxed;
+  }
+  #root {
+    @apply flex min-h-dvh flex-col;
+  }
+  button,
+  summary,
+  label {
+    touch-action: manipulation;
+  }
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Top bar */
+  .topbar {
+    @apply sticky top-0 z-20 border-b border-line;
+    background: var(--bg);
+    padding-top: env(safe-area-inset-top);
+  }
+  .topbar-inner {
+    @apply mx-auto flex max-w-[100rem] flex-col px-3 pb-1.5 sm:px-4;
+  }
+  .topbar-side {
+    @apply flex items-center justify-between gap-2;
+  }
+  .stats {
+    @apply flex flex-wrap items-center gap-x-4 text-sm leading-5 tabular-nums;
+  }
+  .icon-button {
+    @apply inline-flex h-11 min-w-11 items-center justify-center gap-1.5 rounded-lg px-2.5 text-sm text-muted transition-colors duration-150;
+  }
+  .icon-button:hover {
+    background: var(--sunken);
+    color: var(--ink);
+  }
+  .reset-label {
+    display: none;
+  }
+
+  /* Tracker: one line per week on a phone, three weeks per line on a tablet, one line on a desktop */
+  .tracker {
+    @apply grid min-w-0 grid-cols-1;
+  }
+  .week {
+    @apply flex min-w-0 items-center gap-1.5;
+  }
+  .week-label {
+    @apply w-7 shrink-0 text-xs leading-4 text-muted;
+  }
+  .week-cells {
+    @apply grid w-full grid-cols-8;
+  }
+  .cell {
+    @apply relative h-6 min-w-0 p-[2.5px];
+  }
+  .cell-box {
+    @apply flex size-full items-center justify-center rounded-[5px] transition-[background-color,transform] duration-150;
+    background: var(--idle);
+    color: var(--on-fill);
+  }
+  .cell[data-status='correct'] .cell-box {
+    background: var(--ok);
+  }
+  .cell[data-status='wrong'] .cell-box {
+    background: var(--bad);
+  }
+  .cell[aria-current] .cell-box {
+    box-shadow: 0 0 0 1.5px var(--bg), 0 0 0 3.5px var(--ink);
+  }
+  .cell:active .cell-box {
+    transform: scale(0.88);
+  }
+  .cell:focus-visible {
+    outline-offset: 0;
+  }
+  .cell-tip {
+    @apply pointer-events-none absolute top-full left-1/2 z-10 hidden -translate-x-1/2 rounded-md px-2 py-1 text-xs leading-none font-bold;
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .cell:focus-visible .cell-tip {
+    display: block;
+  }
+  @media (hover: hover) {
+    .cell:hover .cell-tip {
+      display: block;
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .tracker {
+      @apply grid-cols-3 gap-x-4;
+    }
+    .reset-label {
+      display: inline;
+    }
+  }
+  @media (min-width: 68rem), (min-width: 40rem) and (max-height: 32rem) {
+    .tracker {
+      @apply flex gap-x-2.5;
+    }
+    .week {
+      @apply basis-0 flex-col items-stretch gap-0;
+    }
+    .week-label {
+      @apply w-auto pl-[3px];
+    }
+    .week-cells {
+      @apply flex;
+    }
+    .cell {
+      @apply flex-1 px-[2px];
+    }
+  }
+  @media (min-width: 68rem) {
+    .topbar-inner {
+      @apply flex-row-reverse items-center gap-5 py-2;
+    }
+    .topbar-side {
+      @apply shrink-0;
+    }
+    .tracker {
+      @apply flex-1;
+    }
+    .stats {
+      @apply flex-col items-start gap-y-1;
+    }
+  }
+  @media (min-width: 68rem) and (max-width: 90rem) {
+    .reset-label {
+      display: none;
+    }
+  }
+
+  /* Question and options */
+  .question {
+    @apply mt-2 font-serif text-[1.4rem] leading-snug font-medium outline-none sm:text-[1.65rem];
+    overflow-wrap: break-word;
+  }
+  .option {
+    @apply relative flex min-h-14 items-start gap-2.5 rounded-xl sm:gap-3 border px-3 py-3 sm:px-4;
+    border-color: var(--line);
+    background: var(--surface);
+  }
+  .option-open {
+    @apply cursor-pointer transition-[background-color,border-color,transform] duration-150;
+  }
+  @media (hover: hover) {
+    .option-open:hover {
+      border-color: var(--control);
+    }
+  }
+  .option-open:active {
+    transform: scale(0.995);
+  }
+  .option-open:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+  }
+  .option-open:has(input:focus-visible) {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+  }
+  .option-letter {
+    @apply flex size-7 shrink-0 items-center justify-center rounded-md text-sm font-bold;
+    background: var(--sunken);
+  }
+  .option-text {
+    @apply min-w-0 flex-1 pt-px;
+    overflow-wrap: break-word;
+  }
+  .option-check {
+    @apply mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md border-2 text-transparent;
+    border-color: var(--control);
+  }
+  input:checked ~ .option-check {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+  input:checked ~ .option-letter {
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+  .option-closed[data-verdict='V'] {
+    --tone: var(--ok);
+    --tone-ink: var(--ok-ink);
+    border-color: var(--ok);
+    background: var(--ok-soft);
+  }
+  .option-closed[data-verdict='F'] {
+    --tone: var(--bad);
+    --tone-ink: var(--bad-ink);
+    border-color: color-mix(in srgb, var(--bad) 35%, transparent);
+    background: var(--bad-soft);
+  }
+  .option-closed .option-letter {
+    border: 1.5px solid var(--tone);
+    background: transparent;
+    color: var(--tone-ink);
+  }
+  .option-closed[data-mark='hit'] .option-letter,
+  .option-closed[data-mark='false-pick'] .option-letter {
+    background: var(--tone);
+    color: var(--on-fill);
+  }
+  .option-closed[data-mark='false-pick'] {
+    border-color: var(--bad);
+    box-shadow: inset 0 0 0 1px var(--bad);
+  }
+  .option-closed[data-mark='missed'] {
+    /* An outline, so the thicker dashes do not shift the content. */
+    border-color: transparent;
+    outline: 2px dashed var(--ok);
+    outline-offset: -2px;
+  }
+  .explanation {
+    @apply mt-2 text-[0.9375rem];
+  }
+  .verdict {
+    @apply flex flex-wrap items-center gap-x-1.5 gap-y-1 text-sm font-bold;
+    color: var(--tone-ink);
+  }
+  .mark {
+    @apply ml-1 rounded-md border px-1.5 leading-5;
+    border-color: currentColor;
+  }
+
+  /* Revealed panels */
+  .panel {
+    @apply min-w-0 rounded-xl border border-line;
+    background: var(--surface);
+  }
+  .rappel summary {
+    @apply flex min-h-13 list-none items-center justify-between rounded-xl px-4 font-bold text-primary;
+  }
+  .rappel summary::-webkit-details-marker {
+    display: none;
+  }
+  .chevron {
+    transition: transform 150ms ease-out;
+  }
+  .rappel[open] .chevron {
+    transform: rotate(180deg);
+  }
+  .prose-math {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .prose-math > * + * {
+    margin-top: 0.8rem;
+  }
+  .prose-math ul {
+    @apply list-disc pl-5;
+  }
+  .prose-math ol {
+    @apply list-decimal pl-5;
+  }
+  .prose-math li + li {
+    margin-top: 0.45rem;
+  }
+  .equations {
+    @apply flex flex-wrap items-center justify-center gap-x-6 gap-y-2;
+  }
+  .table-scroll {
+    @apply max-w-full overflow-x-auto;
+  }
+  .table-scroll table {
+    @apply w-full text-left text-[0.875rem] leading-normal;
+  }
+  .table-scroll :is(th, td) {
+    @apply border-b border-line px-2 py-2 align-top first:pl-0 last:pr-0;
+    overflow-wrap: normal;
+  }
+
+  /* Action bar, dialog, buttons */
+  .action-bar {
+    @apply sticky bottom-0 z-20 border-t border-line px-4 pt-2.5;
+    background: var(--bg);
+    padding-bottom: max(0.625rem, env(safe-area-inset-bottom));
+  }
+  .button {
+    @apply inline-flex min-h-12 items-center justify-center rounded-xl px-5 font-bold transition-[background-color,opacity,transform] duration-150;
+  }
+  .button:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .button:disabled {
+    @apply cursor-not-allowed;
+    background: var(--sunken);
+    color: var(--muted);
+  }
+  .button-primary {
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+  .button-quiet {
+    background: var(--sunken);
+  }
+  .button-danger {
+    background: var(--bad);
+    color: var(--on-fill);
+  }
+  .action {
+    @apply shrink-0 sm:min-w-52;
+  }
+  @media (max-height: 32rem) {
+    .action-bar {
+      padding-block: 0.25rem;
+    }
+  }
+  .shortcuts {
+    @apply hidden flex-wrap gap-x-4 text-[0.8125rem] text-muted sm:flex;
+  }
+  @media (pointer: coarse) {
+    .shortcuts {
+      display: none;
+    }
+  }
+  kbd {
+    @apply inline-block min-w-5 rounded border border-line px-1 text-center font-sans text-xs leading-5;
+    background: var(--surface);
+  }
+  .confirm {
+    @apply m-auto w-[min(26rem,calc(100%-2rem))] rounded-2xl border border-line p-6;
+    background: var(--surface);
+    color: var(--ink);
+  }
+  .confirm::backdrop {
+    background: rgb(2 6 23 / 0.55);
+  }
+
+  /* Motion: short, and never in the way of input */
+  .question-enter {
+    animation: rise 160ms ease-out;
+  }
+  .reveal {
+    animation: rise 180ms ease-out;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0.35;
+      transform: translateY(4px);
+    }
+  }
+}
+
+/* Outside the layers, to override katex.min.css. */
+.katex {
+  font-size: 1.07em;
+}
+/* Crimson Pro has a small x-height. */
+.question .katex {
+  font-size: 0.92em;
+}
+/* A formula moves to the next line whole, and wraps inside only when wider than the line. */
+.katex {
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  text-indent: 0;
+}
+.glue {
+  white-space: nowrap;
+}
+.glue .katex {
+  max-width: calc(100% - 0.8em);
+}
+/* A percentage max-width would let table columns collapse to nothing. */
+.table-scroll .katex {
+  max-width: none;
+  white-space: nowrap;
+}
+@media (max-width: 39.99rem) {
+  /* As an inline block, a wrapped formula would push its final full stop to the far right. */
+  .katex-long {
+    display: inline;
+  }
+  .table-scroll table {
+    font-size: 0.75rem;
+    hyphens: auto;
+  }
+  .table-scroll :is(th, td) {
+    padding-inline: 0.2rem;
+    overflow-wrap: anywhere;
+  }
+  .table-scroll .katex {
+    display: inline;
+    font-size: 1em;
+    white-space: normal;
+  }
+}
+.katex-display {
+  max-width: 100%;
+  overflow: auto hidden;
+  margin: 0;
+  padding-block: 0.15rem;
+}
+/* Long equations wrap at their relations instead of scrolling. */
+.katex-display > .katex {
+  display: block;
+  max-width: none;
+  white-space: normal;
+}
+.katex-display > .katex > .katex-html > .base {
+  margin-block: 0.3em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

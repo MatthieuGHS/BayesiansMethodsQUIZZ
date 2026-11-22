@@ -1,0 +1,2510 @@
+[
+  {
+    "id": "1.1",
+    "week": 1,
+    "uncertain": false,
+    "question": "Which statements about the interpretations of probability are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the Kolmogorov axioms determine that $P(A)$ must be read as the long-run relative frequency of $A$ in repeated trials"
+      },
+      {
+        "letter": "b",
+        "text": "under the frequency interpretation, a statement such as $P(\\theta > 0.05)$ about a fixed unknown conversion rate $\\theta$ carries no useful meaning: it is either 0 or 1, and we do not know which"
+      },
+      {
+        "letter": "c",
+        "text": "the classical (Laplace) interpretation, favourable outcomes divided by equally likely outcomes, applies to any uncertain statement, including the bias of a bent coin"
+      },
+      {
+        "letter": "d",
+        "text": "under the belief interpretation, $P(A) = p$ means that you consider fair a bet that pays 1 if $A$ occurs and costs $p$"
+      },
+      {
+        "letter": "e",
+        "text": "the belief interpretation requires a different set of axioms from the frequency interpretation"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Les axiomes ne fixent aucune interprétation : ils valent aussi bien pour la fréquence que pour la croyance."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "Pour un fréquentiste, $\\theta$ est fixe : l’événement $\\theta > 0.05$ est vrai ou faux, sans probabilité intermédiaire."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "L’interprétation classique exige des issues équiprobables par symétrie, ce qu’une pièce tordue n’a pas."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "C’est la définition par le pari équitable (de Finetti)."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Les mêmes axiomes de Kolmogorov s’appliquent (la cohérence des paris les implique)."
+      }
+    },
+    "reference": "L01 – interprétations de la probabilité (classique, fréquentiste, subjective / pari équitable), axiomes de Kolmogorov.",
+    "rappel": "**Axiomes de Kolmogorov** : $P(A) \\ge 0$, $P(\\Omega) = 1$, et $P(\\bigcup A_i) = \\sum P(A_i)$ pour des événements disjoints. Ils disent comment *calculer*, pas ce que $P(A)$ *veut dire*. Trois interprétations les respectent toutes :\n\n- **Classique (Laplace)** : $P(A) = \\frac{\\text{\\#cas favorables}}{\\text{\\#cas équiprobables}}$. Exige une symétrie (dé, pièce équilibrée). Inapplicable à une pièce tordue.\n- **Fréquentiste (von Mises)** : $P(A) =$ limite de la fréquence relative de $A$ sur des répétitions. Exige une expérience répétable. Un paramètre $\\theta$ est une constante fixe : « $\\theta > 0.05$ » est vrai ou faux, donc sa probabilité vaut 0 ou 1 (inconnue), et $P(\\theta > 0.05)$ ne dit rien d’utile.\n- **Croyance (de Finetti)** : $P(A) = p \\iff$ tu trouves équitable un pari qui coûte $p$ et rapporte 1 si $A$ arrive. Vaut pour tout énoncé incertain, mais elle est personnelle.\n\n**Dutch book** : si tes prix de paris violent les axiomes, on construit un lot de paris qui te fait perdre à coup sûr (ex. $P(A) = 0.7$, $P(A^c) = 0.5$ : tu paies 1.2 pour toucher 1). Des croyances cohérentes obéissent donc *aux mêmes axiomes*. **Statistique bayésienne** $=$ interprétation croyance $+$ calcul des probabilités appliqué aux paramètres."
+  },
+  {
+    "id": "1.2",
+    "week": 1,
+    "uncertain": false,
+    "question": "Which statements about independence, conditional independence and exchangeability are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "in a Bayesian model, observations are typically conditionally independent given the parameter but dependent marginally"
+      },
+      {
+        "letter": "b",
+        "text": "if $A$ and $B$ are conditionally independent given $C$, then $A$ and $B$ are independent"
+      },
+      {
+        "letter": "c",
+        "text": "draws without replacement from an urn are independent and exchangeable"
+      },
+      {
+        "letter": "d",
+        "text": "two flips of a coin with unknown bias $\\theta$ are independent, because the coin does not change between the flips"
+      },
+      {
+        "letter": "e",
+        "text": "iid random variables are exchangeable, but exchangeable random variables need not be independent"
+      }
+    ],
+    "correct": [
+      "a",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Indépendantes sachant $\\theta$, mais chaque observation renseigne sur $\\theta$, donc sur les suivantes."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "L’indépendance conditionnelle n’implique pas l’indépendance marginale (cf. a)."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Sans remise : échangeables, mais *pas* indépendants (le 1$^{\\text{er}}$ tirage change la composition)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "$\\theta$ inconnu : le 1$^{\\text{er}}$ lancer informe sur $\\theta$, donc sur le 2$^{\\text{e}}$. Indépendants seulement *sachant $\\theta$*."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "iid $\\Rightarrow$ échangeable, la réciproque est fausse (exemple : l’urne sans remise)."
+      }
+    },
+    "reference": "L01 – indépendance conditionnelle, échangeabilité (de Finetti). Ex. 01 Part B p. 8 (urne sans remise).",
+    "rappel": "**Indépendance** : $P(A \\cap B) = P(A)P(B)$. **Indépendance conditionnelle** : $P(A \\cap B \\mid C) = P(A \\mid C)P(B \\mid C)$. Aucune n’implique l’autre.\n\n**Le cas bayésien type** : deux lancers d’une pièce de biais $\\theta$ inconnu.\n\n- *Sachant $\\theta$* : $P(H_2 \\mid \\theta, H_1) = \\theta$, le 1$^{\\text{er}}$ lancer n’apporte rien. Les lancers sont indépendants sachant $\\theta$.\n- *Sans connaître $\\theta$* : un pile rend plus crédibles les grandes valeurs de $\\theta$, donc augmente la proba d’un 2$^{\\text{e}}$ pile. Exemple : pièce à $\\theta = 0.5$ ou $0.9$ (½ chacune), $P(H_2) = 0.7$ mais $P(H_2 \\mid H_1) = \\frac{\\frac{1}{2}0.5^2+\\frac{1}{2}0.9^2}{0.7} \\approx 0.757$. Les lancers sont dépendants marginalement.\n\nLa dépendance vient de notre information sur $\\theta$, pas d’un lien physique. C’est elle qui permet d’apprendre.\n\n**Échangeabilité** : $p(y_1, \\dots, y_n) = p(y_{\\pi(1)}, \\dots, y_{\\pi(n)})$ pour toute permutation $\\pi$ (l’ordre n’informe pas). iid $\\Rightarrow$ échangeable, mais pas l’inverse : tirages *sans remise* dans une urne $=$ échangeables (toute permutation d’une même suite de couleurs a la même proba) mais *dépendants* (chaque tirage change l’urne). **de Finetti** : une suite infinie échangeable se comporte comme des données iid sachant un $\\theta$ muni d’un prior."
+  },
+  {
+    "id": "1.4",
+    "week": 1,
+    "uncertain": false,
+    "question": "Let $L(\\theta) = p(y \\mid \\theta)$ be the likelihood function for observed data $y$. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$L(\\theta)$ is a probability density in $\\theta$, so $\\int_\\Theta L(\\theta)\\,d\\theta = 1$"
+      },
+      {
+        "letter": "b",
+        "text": "$L(\\theta)$ is the probability that the parameter equals $\\theta$, given the data"
+      },
+      {
+        "letter": "c",
+        "text": "$L(\\theta)$ is the sampling model $p(y \\mid \\theta)$ read with the data $y$ held fixed and $\\theta$ varying over $\\Theta$"
+      },
+      {
+        "letter": "d",
+        "text": "the evidence $p(y) = \\int_\\Theta p(y \\mid \\theta)p(\\theta)\\,d\\theta$ is a function of $\\theta$"
+      },
+      {
+        "letter": "e",
+        "text": "multiplying $L(\\theta)$ by any constant $c > 0$ that does not involve $\\theta$ leaves the posterior $p(\\theta \\mid y)$ unchanged"
+      }
+    ],
+    "correct": [
+      "c",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "En $\\theta$, $L$ n’est pas une densité et son intégrale n’est pas 1 en général."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "C’est $P(y \\mid \\theta)$, pas $P(\\theta \\mid y)$."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "C’est exactement la définition."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "L’évidence intègre $\\theta$ : c’est une constante (en $\\theta$)."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "La constante disparaît à la normalisation."
+      }
+    },
+    "reference": "L01 – fonction de vraisemblance, évidence, posterior $\\propto$ likelihood $\\times$ prior. Ex. 01 Part A, « A reusable Bayes table » p. 3.",
+    "rappel": "**Vraisemblance** : $L(\\theta) = p(y \\mid \\theta)$, le modèle des données lu avec $y$ *fixé* (observé) et $\\theta$ qui varie. C’est la proba des données sachant $\\theta$, *pas* la proba de $\\theta$ sachant les données.\n\n- **Ce n’est pas une densité en $\\theta$** : $\\int L(\\theta)\\,d\\theta \\ne 1$ en général. Ex. $Y \\sim \\mathrm{Bin}(2,\\theta)$, $y = 1$ : $L = 2\\theta(1-\\theta)$ et $\\int_0^1 2\\theta(1-\\theta)\\,d\\theta = \\frac{1}{3}$.\n- **Bayes** : $p(\\theta \\mid y) = \\dfrac{p(y \\mid \\theta)p(\\theta)}{p(y)}$, avec l’**évidence** $p(y) = \\int p(y \\mid \\theta)p(\\theta)\\,d\\theta$. Dans l’intégrale, $\\theta$ est une variable muette : $p(y)$ est une *constante*, elle ne dépend pas de $\\theta$.\n- **Les constantes disparaissent** : $p(\\theta \\mid y) \\propto p(y \\mid \\theta)p(\\theta)$. Multiplier $L$ par $c > 0$ sans $\\theta$ multiplie numérateur et dénominateur par $c$, donc le posterior ne change pas."
+  },
+  {
+    "id": "1.7",
+    "week": 1,
+    "uncertain": false,
+    "question": "Observations $y_1$ and $y_2$ arrive one after the other, and the posterior for $\\theta$ is computed sequentially. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the sequential and the batch method agree only when $y_1$ and $y_2$ are conditionally independent given $\\theta$"
+      },
+      {
+        "letter": "b",
+        "text": "the second-stage likelihood is $p(y_2 \\mid \\theta, y_1)$, which reduces to $p(y_2 \\mid \\theta)$ when the observations are conditionally independent given $\\theta$"
+      },
+      {
+        "letter": "c",
+        "text": "at the second step the original prior $p(\\theta)$ must be used, since a posterior cannot serve as a prior"
+      },
+      {
+        "letter": "d",
+        "text": "if the first-step evidence is $p(y_1) = 1/2$ and the second-step evidence is $p(y_2 \\mid y_1) = 1/3$, then the batch evidence is $p(y_1, y_2) = 1/6$"
+      },
+      {
+        "letter": "e",
+        "text": "if the first-step evidence is $p(y_1) = 1/2$ and the second-step evidence is $p(y_2 \\mid y_1) = 1/3$, then the batch evidence is $p(y_1, y_2) = 5/6$"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Séquentiel et batch coïncident *toujours*, à condition d’utiliser $p(y_2 \\mid \\theta, y_1)$ (cf. b)."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "C’est la bonne vraisemblance de 2$^{\\text{e}}$ étape."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Justement, le posterior de l’étape 1 sert de prior à l’étape 2."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$p(y_1, y_2) = p(y_1)\\,p(y_2 \\mid y_1) = \\frac{1}{2} \\cdot \\frac{1}{3} = \\frac{1}{6}$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "On multiplie les évidences, on ne les additionne pas."
+      }
+    },
+    "reference": "L01 – mise à jour séquentielle vs batch. Ex. 01 Part B p. 8 et p. 11 ; Ex. 02 Part C p. 17.",
+    "rappel": "**Séquentiel** : calculer $p(\\theta \\mid y_1)$, puis s’en servir comme prior quand $y_2$ arrive. **Batch** : appliquer Bayes une fois avec $p(y_1, y_2 \\mid \\theta)$.\n\n$$\np(\\theta \\mid y_1, y_2) \\propto p(\\theta, y_1, y_2) = p(y_2 \\mid \\theta, y_1)\\,p(y_1 \\mid \\theta)\\,p(\\theta) \\propto p(y_2 \\mid \\theta, y_1)\\,p(\\theta \\mid y_1).\n$$\n\n- Les deux **coïncident toujours**, même avec des données dépendantes, à condition d’utiliser la vraisemblance conditionnelle $p(y_2 \\mid \\theta, y_1)$.\n- Si $y_1, y_2$ sont indépendants sachant $\\theta$, elle se réduit à $p(y_2 \\mid \\theta)$. Sinon (sans remise, série temporelle) il faut conditionner sur le passé.\n- **Évidences** : règle de multiplication $p(y_1, y_2) = p(y_1)\\,p(y_2 \\mid y_1)$. On multiplie, on n’additionne jamais."
+  },
+  {
+    "id": "1.8",
+    "week": 1,
+    "uncertain": false,
+    "question": "For $n$ conditionally iid $\\mathrm{Bernoulli}(\\theta)$ trials $y_1, \\dots, y_n$ the likelihood is $p(y_{1:n} \\mid \\theta) = \\theta^s(1-\\theta)^{n-s}$ with $s = \\sum_{i=1}^n y_i$. Which statement is correct?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$s$ is a sufficient statistic for $\\theta$: the posterior after seeing the whole sequence equals the posterior after being told only « $s$ successes in $n$ trials »"
+      },
+      {
+        "letter": "b",
+        "text": "the order of the successes and failures carries additional information about $\\theta$, so $s$ is not sufficient"
+      },
+      {
+        "letter": "c",
+        "text": "$s$ is sufficient only when the prior on $\\theta$ is uniform"
+      },
+      {
+        "letter": "d",
+        "text": "sufficiency of $s$ means that the distribution of $s$ does not depend on $\\theta$"
+      },
+      {
+        "letter": "e",
+        "text": "in the Neyman factorization $p(y \\mid \\theta) = g(T(y), \\theta)\\,h(y)$, the factor $h(y)$ must depend on $\\theta$"
+      }
+    ],
+    "correct": [
+      "a"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "La vraisemblance ne dépend des données que par $s$."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "L’ordre n’apparaît pas dans la vraisemblance."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "L’exhaustivité est une propriété de la vraisemblance, indépendante du prior."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "C’est la loi des données *sachant $s$* qui ne dépend pas de $\\theta$ ; la loi de $s$, elle, en dépend."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "$h(y)$ ne doit justement *pas* dépendre de $\\theta$."
+      }
+    },
+    "reference": "L01 – statistique exhaustive, factorisation de Neyman. Ex. 01 Part B, « Batch analysis gives the same posterior » p. 11.",
+    "rappel": "**Statistique** $=$ fonction des données seules. $T(Y)$ est **exhaustive** pour $\\theta$ si *la loi de $Y$ sachant $T(Y)$* ne dépend pas de $\\theta$ (une fois $T$ connu, le reste des données n’apprend plus rien sur $\\theta$). Attention : la loi de $T$ elle-même *dépend* de $\\theta$ (ex. $s \\sim \\mathrm{Bin}(n,\\theta)$), sinon $T$ serait inutile.\n\n**Neyman** : $T$ exhaustive $\\iff p(y \\mid \\theta) = g(T(y), \\theta)\\,h(y)$, avec $h$ *indépendant de $\\theta$*.\n\n**Conséquence bayésienne**, quel que soit le prior : $p(\\theta \\mid y) \\propto g(T(y), \\theta)\\,p(\\theta)$, donc le posterior ne dépend des données que via $T$.\n\n**Bernoulli** : $\\prod_i \\theta^{y_i}(1-\\theta)^{1-y_i} = \\theta^s(1-\\theta)^{n-s} \\cdot 1$ avec $s = \\sum y_i$. Voir toute la suite ou seulement « $s$ succès sur $n$ » donne le même posterior : l’ordre n’informe pas."
+  },
+  {
+    "id": "1.9",
+    "week": 1,
+    "uncertain": false,
+    "question": "Researcher A fixed $n = 15$ trials in advance and observed 11 successes. Researcher B sampled until the 4th failure, which occurred on trial 15, so B also observed 11 successes in 15 trials. Both use the same prior for $\\theta$. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the two posteriors for $\\theta$ are identical, because both likelihoods are proportional to $\\theta^{11}(1-\\theta)^4$"
+      },
+      {
+        "letter": "b",
+        "text": "the two posteriors differ, because the sample spaces of the two experiments differ"
+      },
+      {
+        "letter": "c",
+        "text": "the frequentist one-sided p-values for $H_0 : \\theta = 0.5$ differ between A and B, because a p-value sums probabilities of outcomes that were never observed, over two different sample spaces"
+      },
+      {
+        "letter": "d",
+        "text": "the posteriors are identical only if the prior is uniform"
+      },
+      {
+        "letter": "e",
+        "text": "B’s posterior puts more mass on large $\\theta$, because B kept sampling until enough failures appeared"
+      }
+    ],
+    "correct": [
+      "a",
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Binomiale $\\propto \\theta^{11}(1-\\theta)^4$, et binomiale négative $\\propto \\theta^{11}(1-\\theta)^4$ aussi : seule la constante change."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Le posterior ne dépend que de la vraisemblance observée (principe de vraisemblance)."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Les p-values somment sur des issues non observées dans des espaces différents, donc elles diffèrent (comme 0.073 vs 0.033 dans l’exemple du cours, Exercices 01 Ex. 4)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Identiques pour *tout* prior commun."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Même vraisemblance, donc même posterior."
+      }
+    },
+    "reference": "L01 – principe de vraisemblance, règles d’arrêt (binomiale vs binomiale négative). Exercices 01 Ex. 4.",
+    "rappel": "**Principe de vraisemblance** : si deux expériences donnent des vraisemblances proportionnelles en $\\theta$, elles doivent mener aux mêmes conclusions sur $\\theta$. Le bayésien le respecte automatiquement (posterior $\\propto L \\times{}$ prior, la constante disparaît), le fréquentiste non.\n\n- **A** (Binomiale, $n = 15$ fixé) : $L_A = \\binom{15}{11}\\theta^{11}(1-\\theta)^4$. **B** (Binomiale négative, jusqu’au 4$^{\\text{e}}$ échec) : $L_B = \\binom{14}{11}\\theta^{11}(1-\\theta)^4$ (le dernier essai est un échec par construction). Même noyau $\\theta^{11}(1-\\theta)^4$ : même posterior *pour tout prior commun*.\n- **p-value** $= P($résultat au moins aussi extrême ${}\\mid H_0)$ : elle somme sur des résultats *non observés*. « Plus extrême » dépend du plan : pour A, plus de succès sur 15 essais ; pour B, le 4$^{\\text{e}}$ échec qui arrive plus tard. Deux espaces d’échantillonnage différents donnent deux p-values différentes (exemple du cours, 9/12 : 0.073 contre 0.033).\n- **Règles d’arrêt** : pour un bayésien, une règle d’arrêt qui ne dépend que des données observées est ignorable."
+  },
+  {
+    "id": "1.10",
+    "week": 1,
+    "uncertain": false,
+    "question": "Which statement about 95% intervals is correct?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "for the particular confidence interval computed from the observed data, frequentist theory assigns probability 0.95 that it contains $\\theta$"
+      },
+      {
+        "letter": "b",
+        "text": "a 95% confidence procedure $C(\\cdot)$ satisfies $P_{Y \\mid \\theta}(\\theta \\in C(Y)) = 0.95$ for every $\\theta$, a probability over hypothetical repeated datasets, whereas a 95% credible interval satisfies $P(\\theta \\in C \\mid y) = 0.95$, a probability statement about $\\theta$ given the observed data"
+      },
+      {
+        "letter": "c",
+        "text": "the sentence « there is a 95% probability that $\\theta$ lies in this interval » is the claim made by a confidence interval"
+      },
+      {
+        "letter": "d",
+        "text": "credible and confidence intervals coincide numerically for every sample size and every prior"
+      },
+      {
+        "letter": "e",
+        "text": "a credible interval is defined by its coverage over hypothetical repeated datasets"
+      }
+    ],
+    "correct": [
+      "b"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Une fois calculé, l’intervalle contient $\\theta$ ou non : la théorie fréquentiste ne lui donne pas de probabilité 0.95."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "Couverture sur des données répétées vs probabilité conditionnelle aux données observées."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "C’est l’interprétation de l’intervalle de *crédibilité*."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Ils coïncident dans des cas particuliers, pas en général."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Un intervalle de crédibilité est défini par $P(\\theta \\in C \\mid y)$, pas par une couverture."
+      }
+    },
+    "reference": "L01 – intervalle de crédibilité vs intervalle de confiance. Ex. 04 Part G p. 21.",
+    "rappel": "**Confiance :** $P_{Y \\mid \\theta}\\bigl(\\theta \\in C(Y)\\bigr) = 0.95 \\ \\ \\forall\\theta$\n\n**Crédibilité :** $P(\\theta \\in C \\mid y) = 0.95$\n\n- **Confiance** : $\\theta$ fixe, les données sont aléatoires. C’est la *procédure* $C(\\cdot)$ qui couvre $\\theta$ dans 95% des répétitions hypothétiques. Pour *ton* intervalle calculé $C(y_{obs})$, aucune probabilité : il contient $\\theta$ ou non.\n- **Crédibilité** : les données sont fixées, $\\theta$ est incertain. Probabilité directe sur $\\theta$ sachant $y$ (et le prior). Elle n’est pas définie par une couverture.\n- « 95% de probabilité que $\\theta$ soit dans l’intervalle » $=$ la phrase de la *crédibilité*. L’appliquer à un IC est l’erreur classique.\n- Ils coïncident numériquement avec beaucoup de données (Bernstein–von Mises), pas en général."
+  },
+  {
+    "id": "2.1",
+    "week": 2,
+    "uncertain": true,
+    "question": "A posterior density on $(0,\\infty)$ satisfies $p(\\lambda \\mid y) \\propto \\lambda^5 e^{-3\\lambda}$. In the shape-rate parametrization used in the lecture, which named distribution is it?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$\\mathrm{Gamma}(5,\\, 3)$"
+      },
+      {
+        "letter": "b",
+        "text": "$\\mathrm{Gamma}(3,\\, 6)$"
+      },
+      {
+        "letter": "c",
+        "text": "$\\mathrm{Gamma}(6,\\, 3)$"
+      },
+      {
+        "letter": "d",
+        "text": "$\\mathrm{Gamma}(5,\\, 4)$"
+      },
+      {
+        "letter": "e",
+        "text": "$\\mathrm{Gamma}(6,\\, 1/3)$"
+      }
+    ],
+    "correct": [
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "$\\lambda^{a-1}e^{-b\\lambda}$ avec $a-1 = 5$ et $b = 3$, donc $\\mathrm{Gamma}(6,\\, 3)$. Piège : lire $a = 5$ (option a), ou confondre rate et scale (option e)."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "$\\lambda^{a-1}e^{-b\\lambda}$ avec $a-1 = 5$ et $b = 3$, donc $\\mathrm{Gamma}(6,\\, 3)$. Piège : lire $a = 5$ (option a), ou confondre rate et scale (option e)."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "$\\lambda^{a-1}e^{-b\\lambda}$ avec $a-1 = 5$ et $b = 3$, donc $\\mathrm{Gamma}(6,\\, 3)$. Piège : lire $a = 5$ (option a), ou confondre rate et scale (option e)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "$\\lambda^{a-1}e^{-b\\lambda}$ avec $a-1 = 5$ et $b = 3$, donc $\\mathrm{Gamma}(6,\\, 3)$. Piège : lire $a = 5$ (option a), ou confondre rate et scale (option e)."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "$\\lambda^{a-1}e^{-b\\lambda}$ avec $a-1 = 5$ et $b = 3$, donc $\\mathrm{Gamma}(6,\\, 3)$. Piège : lire $a = 5$ (option a), ou confondre rate et scale (option e)."
+      }
+    },
+    "reference": "L02 – reconnaissance de noyau, Gamma(shape, rate). Ex. 02 Part B p. 13.",
+    "rappel": "**Loi Gamma (shape $a$, rate $b$)** :\n\n$$\np(\\lambda) = \\frac{b^a}{\\Gamma(a)}\\,\\lambda^{a-1}e^{-b\\lambda},\\ \\lambda > 0, \\qquad \\mathbb{E}[\\lambda] = \\frac{a}{b}, \\quad \\mathrm{Var}[\\lambda] = \\frac{a}{b^2}.\n$$\n\n**Reconnaître le noyau** $\\lambda^\\alpha e^{-\\beta\\lambda}$ : shape $=$ exposant de $\\lambda$ *plus 1* ($a = \\alpha + 1$), rate $=$ coefficient dans l’exponentielle ($b = \\beta$). Ici $\\lambda^5 e^{-3\\lambda}$ donne $a = 6$, $b = 3$. Pièges : oublier le $+1$ ($\\mathrm{Gamma}(5,\\, 3)$) ; confondre rate et scale (scale $= 1/b$, c’est la convention de numpy)."
+  },
+  {
+    "id": "2.2",
+    "week": 2,
+    "uncertain": false,
+    "question": "About conjugate families and kernel recognition, which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "conjugacy is a property of the prior family alone, so the Beta family is conjugate for every likelihood"
+      },
+      {
+        "letter": "b",
+        "text": "a family $\\mathcal{F}$ is conjugate for the likelihood $p(y \\mid \\theta)$ if $p(\\theta) \\in \\mathcal{F}$ implies $p(\\theta \\mid y) \\in \\mathcal{F}$ for every dataset $y$"
+      },
+      {
+        "letter": "c",
+        "text": "the set of all distributions fails the definition of conjugacy, because a posterior can fall outside it"
+      },
+      {
+        "letter": "d",
+        "text": "the hyperparameters $(a, b)$ of a $\\mathrm{Beta}(a, b)$ prior are parameters of the sampling model $p(y \\mid \\theta)$"
+      },
+      {
+        "letter": "e",
+        "text": "if two densities on the same space have proportional kernels, they are the same distribution, so the normalizing constant of the posterior can be read off without computing the integral"
+      }
+    ],
+    "correct": [
+      "b",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "La conjugaison est une propriété du couple prior / vraisemblance (la Beta est conjuguée pour la Binomiale, pas pour tout)."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "C’est la définition."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "L’ensemble de toutes les lois est trivialement conjugué : le posterior y est toujours."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Ce sont des paramètres du *prior*."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "C’est le principe du kernel matching."
+      }
+    },
+    "reference": "L02 – définition de la conjugaison, kernel matching. Ex. 02 Part A p. 2.",
+    "rappel": "**Conjugaison** : une famille $\\mathcal{F}$ est conjuguée *pour une vraisemblance donnée* si prior $\\in \\mathcal{F} \\Rightarrow$ posterior $\\in \\mathcal{F}$, pour tout jeu de données. C’est une propriété du *couple* (prior, vraisemblance) : Beta est conjuguée pour Binomiale/Bernoulli, pas pour une Normale.\n\nL’ensemble de *toutes* les lois est trivialement conjugué (le posterior y est toujours), mais inutile. L’intérêt est une petite famille paramétrique où la mise à jour se fait sur les paramètres.\n\n**Hyperparamètres** $=$ paramètres du *prior* (ex. $(a, b)$ de la Beta), à ne pas confondre avec $\\theta$, le paramètre du modèle des données.\n\n**Kernel matching** : si $p(\\theta \\mid y) \\propto k(\\theta)$ et que $k$ est le noyau d’une loi connue $f$, alors le posterior *est $f$*. Deux densités proportionnelles qui intègrent toutes deux à 1 sont égales, donc la constante est forcée sans calcul d’intégrale.\n\n| Vraisemblance | Prior | Posterior |\n|---|---|---|\n| $\\mathrm{Bin}(n,\\theta)$ | $\\mathrm{Beta}(a,b)$ | $\\mathrm{Beta}(a+y,\\ b+n-y)$ |\n| $\\mathrm{Poisson}(\\lambda)$, $n$ obs. | $\\mathrm{Gamma}(a,b)$ | $\\mathrm{Gamma}(a+\\sum y_i,\\ b+n)$ |\n| $\\mathcal{N}(\\mu,\\sigma^2)$, $\\sigma^2$ connu | $\\mathcal{N}(\\mu_0,\\tau_0^2)$ | $\\mathcal{N}(\\mu_n,\\tau_n^2)$ (addition des précisions) |"
+  },
+  {
+    "id": "2.5",
+    "week": 2,
+    "uncertain": false,
+    "question": "About reading hyperparameters as pseudo-data, which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "in the Gamma-Poisson model with $\\lambda \\sim \\mathrm{Gamma}(a,b)$ (shape $a$, rate $b$), the shape $a$ counts the prior observation periods"
+      },
+      {
+        "letter": "b",
+        "text": "$\\mathrm{Beta}(90,\\, 30)$ and $\\mathrm{Beta}(3,\\, 1)$ have the same prior mean, so they express beliefs of the same strength"
+      },
+      {
+        "letter": "c",
+        "text": "the prior $\\mathrm{Beta}(a,b)$ acts as if $a$ successes and $b$ failures had already been observed, so its prior effective sample size is $a+b$"
+      },
+      {
+        "letter": "d",
+        "text": "in the Gamma-Poisson model with equal observation periods, the rate $b$ counts the prior observation periods and the shape $a$ counts the prior events seen in them"
+      },
+      {
+        "letter": "e",
+        "text": "in the Normal model with known $\\sigma^2$, the prior $\\mu \\sim \\mathcal{N}(\\mu_0,\\tau_0^2)$ is worth $\\tau_0^2$ observations"
+      }
+    ],
+    "correct": [
+      "c",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "La shape $a$ compte les *événements* a priori ; c’est la rate $b$ qui compte les périodes."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Même moyenne $3/4$, mais des ESS de 120 et 4 : des forces très différentes."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "C’est la lecture du cours : $\\mathrm{ESS} = a+b$ (Ex. 02 p. 2 : $a_0 = \\mu_0\\kappa$, $b_0 = (1-\\mu_0)\\kappa$)."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Cohérent avec la mise à jour $\\mathrm{Gamma}(a+\\sum y,\\, b+n)$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Le prior vaut $\\sigma^2/\\tau_0^2$ observations (rapport des précisions), pas $\\tau_0^2$."
+      }
+    },
+    "reference": "L02 – hyperparamètres comme pseudo-données, taille d’échantillon effective. Ex. 02 Part A, « Prior elicitation from (mean, ESS) » p. 2 ; Exercices 02 Ex. 1(a).",
+    "rappel": "**Lire les hyperparamètres comme des pseudo-données** : la mise à jour ajoute les données aux hyperparamètres, donc les hyperparamètres se lisent comme des données « déjà vues ».\n\n- **Beta($a,b$)** $\\to \\mathrm{Beta}(a+y,\\ b+n-y)$ : $a =$ succès a priori, $b =$ échecs a priori. Taille d’échantillon effective **ESS** $= a+b$, moyenne $\\frac{a}{a+b}$. $\\mathrm{Beta}(3,\\, 1)$ et $\\mathrm{Beta}(90,\\, 30)$ ont la même moyenne $\\frac{3}{4}$, mais des ESS de 4 et 120 : la seconde est 30 fois plus ferme.\n- **Gamma($a,b$), Poisson** $\\to \\mathrm{Gamma}(a+\\sum y_i,\\ b+n)$ : $a =$ *événements* a priori, $b =$ *périodes* d’observation a priori ($\\mathrm{Gamma}(6,\\, 2) \\approx$ « 6 événements en 2 périodes »).\n- **Normal, $\\sigma^2$ connu** : une observation a la précision $1/\\sigma^2$, le prior la précision $1/\\tau_0^2$. Le prior vaut donc $n_0 = \\sigma^2/\\tau_0^2$ observations (rapport de précisions, pas $\\tau_0^2$)."
+  },
+  {
+    "id": "2.6",
+    "week": 2,
+    "uncertain": true,
+    "question": "Calls arrive at a rate of $\\lambda$ per hour, with prior $\\lambda \\sim \\mathrm{Gamma}(6,2)$ (shape 6, rate 2). Three shifts of lengths $t = (4,2,2)$ hours record $y = (5,3,4)$ calls, with $Y_i \\mid \\lambda \\sim \\mathrm{Pois}(\\lambda t_i)$ independently. The posterior distribution of $\\lambda$ is:",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$\\mathrm{Gamma}(18,\\, 5)$"
+      },
+      {
+        "letter": "b",
+        "text": "$\\mathrm{Gamma}(18,\\, 10)$"
+      },
+      {
+        "letter": "c",
+        "text": "$\\mathrm{Gamma}(14,\\, 14)$"
+      },
+      {
+        "letter": "d",
+        "text": "$\\mathrm{Gamma}(12,\\, 8)$"
+      },
+      {
+        "letter": "e",
+        "text": "$\\mathrm{Gamma}(18,\\, 8)$"
+      }
+    ],
+    "correct": [
+      "b"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Avec exposition : $\\mathrm{Gamma}(a+\\sum y_i,\\, b+\\sum t_i) = \\mathrm{Gamma}(6{+}12,\\, 2{+}8) = \\mathrm{Gamma}(18,\\, 10)$. Piège : $b+n = 5$ (option a) ignore les durées."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "Avec exposition : $\\mathrm{Gamma}(a+\\sum y_i,\\, b+\\sum t_i) = \\mathrm{Gamma}(6{+}12,\\, 2{+}8) = \\mathrm{Gamma}(18,\\, 10)$. Piège : $b+n = 5$ (option a) ignore les durées."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Avec exposition : $\\mathrm{Gamma}(a+\\sum y_i,\\, b+\\sum t_i) = \\mathrm{Gamma}(6{+}12,\\, 2{+}8) = \\mathrm{Gamma}(18,\\, 10)$. Piège : $b+n = 5$ (option a) ignore les durées."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Avec exposition : $\\mathrm{Gamma}(a+\\sum y_i,\\, b+\\sum t_i) = \\mathrm{Gamma}(6{+}12,\\, 2{+}8) = \\mathrm{Gamma}(18,\\, 10)$. Piège : $b+n = 5$ (option a) ignore les durées."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Avec exposition : $\\mathrm{Gamma}(a+\\sum y_i,\\, b+\\sum t_i) = \\mathrm{Gamma}(6{+}12,\\, 2{+}8) = \\mathrm{Gamma}(18,\\, 10)$. Piège : $b+n = 5$ (option a) ignore les durées."
+      }
+    },
+    "reference": "L02 – Gamma-Poisson avec exposition. Ex. 02 Part B p. 12–14.",
+    "rappel": "**Gamma–Poisson avec exposition** : $Y_i \\mid \\lambda \\sim \\mathrm{Pois}(\\lambda t_i)$, où $t_i =$ durée (ou exposition) de l’observation $i$.\n\n$$\np(y \\mid \\lambda) \\propto \\prod_i (\\lambda t_i)^{y_i}e^{-\\lambda t_i} \\propto \\lambda^{\\sum y_i}e^{-\\lambda \\sum t_i}, \\quad \\text{prior} \\propto \\lambda^{a-1}e^{-b\\lambda} \\ \\Rightarrow\\ \\lambda \\mid y \\sim \\mathrm{Gamma}\\Bigl(a+\\sum_i y_i,\\ b+\\sum_i t_i\\Bigr).\n$$\n\nShape $+$ nombre total d’événements, rate $+$ exposition totale. Sans exposition ($t_i = 1$), on retrouve $b+n$. Ici : $\\mathrm{Gamma}(6{+}12,\\, 2{+}8) = \\mathrm{Gamma}(18,\\, 10)$. Piège : $b+n = 5$ ignore les durées."
+  },
+  {
+    "id": "2.7",
+    "week": 2,
+    "uncertain": false,
+    "question": "In the Normal model with known variance $\\sigma^2 = 12$, the prior is $\\mu \\sim \\mathcal{N}(20,2)$ (prior variance $\\tau_0^2 = 2$) and $n = 3$ observations have sample mean $\\bar{y} = 26$. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the posterior precision is $1/2 + 3/12 = 3/4$"
+      },
+      {
+        "letter": "b",
+        "text": "the posterior variance is $2 + 12/3 = 6$"
+      },
+      {
+        "letter": "c",
+        "text": "the posterior mean is 23, the midpoint of 20 and 26"
+      },
+      {
+        "letter": "d",
+        "text": "the weight on the sample mean $\\bar{y}$ in the posterior mean is $2/3$"
+      },
+      {
+        "letter": "e",
+        "text": "the posterior mean is 22"
+      }
+    ],
+    "correct": [
+      "a",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "$1/\\tau_0^2 + n/\\sigma^2 = 1/2 + 3/12 = 3/4$."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "On additionne les précisions, pas les variances : la variance vaut $4/3$."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Les poids ne sont pas égaux."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "$w = \\frac{3/12}{3/4} = 1/3$."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "$20 + \\frac{1}{3}(26-20) = 22$."
+      }
+    },
+    "reference": "L02 – Normal-Normal, addition des précisions. Exercices 02 Ex. 3.",
+    "rappel": "**Normal–Normal, $\\sigma^2$ connu**, prior $\\mu \\sim \\mathcal{N}(\\mu_0,\\tau_0^2)$, $n$ observations de moyenne $\\bar{y}$. On **additionne les précisions** (précision $=$ 1/variance), jamais les variances :\n\n$$\n\\frac{1}{\\tau_n^2} = \\frac{1}{\\tau_0^2} + \\frac{n}{\\sigma^2}, \\qquad \\mu_n = w\\,\\bar{y} + (1-w)\\,\\mu_0, \\qquad w = \\frac{n/\\sigma^2}{1/\\tau_n^2}.\n$$\n\nLa moyenne a posteriori est une moyenne pondérée par les précisions. Ici : $\\frac{1}{2}+\\frac{3}{12} = \\frac{3}{4}$, donc $\\tau_n^2 = \\frac{4}{3}$, $w = \\frac{3/12}{3/4} = \\frac{1}{3}$ et $\\mu_n = 20+\\frac{1}{3}(26-20) = 22$."
+  },
+  {
+    "id": "2.8",
+    "week": 2,
+    "uncertain": false,
+    "question": "About the Normal models of the lecture, which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "with $\\sigma^2$ known, the posterior predictive for a new observation is $\\mathcal{N}(\\mu_n,\\tau_n^2)$, because the posterior of $\\mu$ already carries all the uncertainty"
+      },
+      {
+        "letter": "b",
+        "text": "with $\\sigma^2$ known and $\\mu \\mid y \\sim \\mathcal{N}(\\mu_n,\\tau_n^2)$, the posterior predictive for a new observation is $\\mathcal{N}(\\mu_n,\\sigma^2+\\tau_n^2)$"
+      },
+      {
+        "letter": "c",
+        "text": "in the $\\mathrm{NIG}(m_0,\\kappa_0,a_0,b_0)$ prior, $\\mu$ and $\\sigma^2$ are independent"
+      },
+      {
+        "letter": "d",
+        "text": "in the NIG model the marginal posterior of $\\mu$ is a Student-$t$ with $2a_n$ degrees of freedom, centred at $m_n$"
+      },
+      {
+        "letter": "e",
+        "text": "in the NIG update, $b_n$ depends on the data only through $S = \\sum_i (y_i-\\bar{y})^2$"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "On oublie le bruit d’observation $\\sigma^2$."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "Variance prédictive $= \\sigma^2+\\tau_n^2$."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Dans la NIG, $\\mu \\mid \\sigma^2 \\sim \\mathcal{N}(m_0,\\sigma^2/\\kappa_0)$ : $\\mu$ dépend de $\\sigma^2$."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$\\mu \\mid y \\sim t_{2a_n}(m_n,\\, b_n/(a_n\\kappa_n))$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "$b_n$ contient aussi le terme $\\frac{\\kappa_0 n}{2(\\kappa_0+n)}(\\bar{y}-m_0)^2$, qui dépend de $\\bar{y}$."
+      }
+    },
+    "reference": "L02 – Normal à variance connue (prédictive), Normal-Inverse-Gamma. Exercices 02 Ex. 4 et Ex. 6.",
+    "rappel": "**Prédictive Normale, $\\sigma^2$ connu** : $\\tilde{y} = \\mu+\\varepsilon$, avec $\\mu \\mid y \\sim \\mathcal{N}(\\mu_n,\\tau_n^2)$ et un bruit $\\varepsilon \\sim \\mathcal{N}(0,\\sigma^2)$ indépendant. Donc $\\tilde{y} \\mid y \\sim \\mathcal{N}(\\mu_n,\\ \\sigma^2+\\tau_n^2)$ : bruit d’observation $+$ incertitude sur $\\mu$.\n\n**NIG($m_0,\\kappa_0,a_0,b_0$)**, $\\mu$ et $\\sigma^2$ inconnus : $\\sigma^2 \\sim \\mathrm{Inv\\text{-}Gamma}(a_0,b_0)$ et $\\mu \\mid \\sigma^2 \\sim \\mathcal{N}(m_0,\\sigma^2/\\kappa_0)$. *$\\mu$ dépend* de $\\sigma^2$ (sa variance est proportionnelle à $\\sigma^2$). Mise à jour :\n\n$$\n\\kappa_n = \\kappa_0+n, \\quad m_n = \\frac{\\kappa_0 m_0+n\\bar{y}}{\\kappa_n}, \\quad a_n = a_0+\\frac{n}{2}, \\quad b_n = b_0+\\frac{S}{2}+\\frac{\\kappa_0 n(\\bar{y}-m_0)^2}{2\\kappa_n}, \\quad S = \\sum_i (y_i-\\bar{y})^2.\n$$\n\n$b_n$ dépend aussi de l’écart $\\bar{y}-m_0$. Marginale : $\\mu \\mid y \\sim t_{2a_n}\\bigl(m_n,\\ \\frac{b_n}{a_n\\kappa_n}\\bigr)$, une Student centrée en $m_n$. La prédictive est aussi une Student."
+  },
+  {
+    "id": "2.9",
+    "week": 2,
+    "uncertain": false,
+    "question": "About posterior predictive distributions in conjugate models, which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "in the Beta-Binomial model the posterior predictive for the number of successes in $m$ future trials is exactly $\\mathrm{Bin}(m,\\mathbb{E}[\\theta \\mid y])$"
+      },
+      {
+        "letter": "b",
+        "text": "in the Gamma-Poisson model the posterior predictive of a new count is Negative Binomial, with variance strictly larger than its mean"
+      },
+      {
+        "letter": "c",
+        "text": "each posterior predictive is obtained by averaging the sampling model over the posterior, so its variance contains both the sampling noise and the remaining uncertainty about the parameter"
+      },
+      {
+        "letter": "d",
+        "text": "in the NIG model the posterior predictive for a new observation is Normal"
+      },
+      {
+        "letter": "e",
+        "text": "the plug-in prediction $p(\\tilde{y} \\mid \\hat{\\theta})$ accounts for the remaining uncertainty about $\\theta$"
+      }
+    ],
+    "correct": [
+      "b",
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "C’est une Beta-Binomiale, plus dispersée qu’une Binomiale plug-in."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "Mélange Gamma de Poisson, donc Binomiale négative, surdispersée."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Variance totale $=$ bruit d’échantillonnage $+$ incertitude sur le paramètre."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "C’est une Student-$t$ (queues plus lourdes que la normale)."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Le plug-in ignore l’incertitude sur $\\theta$ : il est trop étroit."
+      }
+    },
+    "reference": "L02 – prédictives conjuguées (Beta-Binomiale, Binomiale négative, Student). Ex. 02 Part A p. 8, Part B « Negative Binomial predictive vs plug-in Poisson » p. 15.",
+    "rappel": "**Prédictive a posteriori** : $p(\\tilde{y} \\mid y) = \\int p(\\tilde{y} \\mid \\theta)\\,p(\\theta \\mid y)\\,d\\theta$, le modèle des données moyenné sur le posterior. Variance totale :\n\n$$\n\\mathrm{Var}(\\tilde{y} \\mid y) = \\underbrace{\\mathbb{E}[\\mathrm{Var}(\\tilde{y} \\mid \\theta) \\mid y]}_{\\text{bruit d’échantillonnage}} + \\underbrace{\\mathrm{Var}(\\mathbb{E}[\\tilde{y} \\mid \\theta] \\mid y)}_{\\text{incertitude sur }\\theta}.\n$$\n\n| Modèle | Prédictive | Remarque |\n|---|---|---|\n| Beta–Binomial | Beta-Binomiale | plus dispersée que $\\mathrm{Bin}(m,\\mathbb{E}[\\theta \\mid y])$ |\n| Gamma–Poisson | Binomiale négative | variance $= \\frac{a}{b}+\\frac{a}{b^2} >$ moyenne $\\frac{a}{b}$ |\n| NIG | Student-$t$ | queues plus lourdes qu’une Normale |\n\nLe **plug-in** $p(\\tilde{y} \\mid \\hat{\\theta})$ ignore le 2$^{\\text{e}}$ terme : ses intervalles sont trop étroits."
+  },
+  {
+    "id": "2.10",
+    "week": 2,
+    "uncertain": false,
+    "question": "About exponential families $p(y \\mid \\eta) = h(y)\\exp\\{\\eta^\\top T(y)-A(\\eta)\\}$, which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the $\\mathrm{Pois}(\\lambda)$ family is an exponential family with natural parameter $\\eta = \\log\\lambda$ and sufficient statistic $T(y) = y$"
+      },
+      {
+        "letter": "b",
+        "text": "the $\\mathrm{Bernoulli}(\\theta)$ family has natural parameter $\\eta = \\theta$"
+      },
+      {
+        "letter": "c",
+        "text": "$\\mathrm{Uniform}(0,\\theta)$ is an exponential family with $T(y) = \\max_i y_i$"
+      },
+      {
+        "letter": "d",
+        "text": "the base measure $h(y)$ may depend on the natural parameter $\\eta$"
+      },
+      {
+        "letter": "e",
+        "text": "for $n$ iid observations from a $k$-parameter exponential family, $\\sum_{i=1}^n T(y_i)$ is a sufficient statistic whose dimension $k$ does not grow with $n$"
+      }
+    ],
+    "correct": [
+      "a",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "$\\frac{1}{y!}\\exp(y\\log\\lambda-\\lambda)$, donc $\\eta = \\log\\lambda$, $T(y) = y$, $A = e^\\eta$."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "$\\eta = \\log\\frac{\\theta}{1-\\theta}$ (logit)."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Le support dépend de $\\theta$ : ce n’est pas une famille exponentielle."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "$h(y)$ ne dépend pas de $\\eta$."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Statistique exhaustive de dimension fixe $k$."
+      }
+    },
+    "reference": "L02 – familles exponentielles, paramètre naturel, statistique exhaustive. Exercices 02 Ex. 5.",
+    "rappel": "**Famille exponentielle** : $p(y \\mid \\eta) = h(y)\\exp\\{\\eta^\\top T(y)-A(\\eta)\\}$, avec $\\eta$ le paramètre naturel, $T$ la statistique exhaustive, $A$ la log-partition, et $h$ la mesure de base, qui *ne dépend pas de $\\eta$*.\n\n- **Poisson** : $\\frac{\\lambda^y e^{-\\lambda}}{y!} = \\frac{1}{y!}\\exp\\{y\\log\\lambda-\\lambda\\}$, d’où $\\eta = \\log\\lambda$, $T = y$, $A = e^\\eta$.\n- **Bernoulli** : $\\theta^y(1-\\theta)^{1-y} = \\exp\\{y\\log\\frac{\\theta}{1-\\theta}+\\log(1-\\theta)\\}$, d’où $\\eta = \\mathrm{logit}(\\theta)$, pas $\\theta$.\n- **Contre-exemple** : $\\mathrm{Uniform}(0,\\theta)$, dont le support dépend de $\\theta$. On ne peut pas l’écrire sous cette forme.\n\nPour $n$ observations iid, $\\sum_i T(y_i)$ est exhaustive, de dimension fixe $k$ quel que soit $n$. Le prior conjugué $p(\\eta) \\propto \\exp\\{\\eta^\\top\\chi-\\nu A(\\eta)\\}$ se met à jour en $(\\chi+\\sum T(y_i),\\ \\nu+n)$."
+  },
+  {
+    "id": "3.2",
+    "week": 3,
+    "uncertain": false,
+    "question": "Which statements about when the prior stops influencing the posterior are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "with enough data the influence of the prior vanishes in every model, whatever its structure"
+      },
+      {
+        "letter": "b",
+        "text": "assigning prior density 0 to a neighbourhood of the true parameter value is harmless, because the likelihood eventually overrides the prior"
+      },
+      {
+        "letter": "c",
+        "text": "for $Y \\sim \\mathcal{N}(\\theta_1+\\theta_2,1)$ with independent priors $\\theta_i \\sim \\mathcal{N}(0,1)$, the posterior of $\\delta = \\theta_1-\\theta_2$ equals its prior, however many observations are collected"
+      },
+      {
+        "letter": "d",
+        "text": "in hierarchical models, where every new group brings its own parameter, the fixed-dimension condition for « data eventually dominate » is satisfied automatically"
+      },
+      {
+        "letter": "e",
+        "text": "« data eventually dominate » requires an identifiable parameter, a prior with positive density around the true value, and a parameter whose dimension does not grow with $n$"
+      }
+    ],
+    "correct": [
+      "c",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Faux pour les modèles non identifiés ou de dimension croissante."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Règle de Cromwell : une densité nulle reste nulle quel que soit le nombre de données."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "$\\theta_1+\\theta_2$ et $\\theta_1-\\theta_2$ sont indépendants a priori (normales non corrélées), et la vraisemblance ne dépend que de la somme : $\\delta$ n’apprend rien."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Chaque groupe ajoute un paramètre, donc la dimension croît : la condition n’est *pas* remplie."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Ce sont les trois conditions du cours."
+      }
+    },
+    "reference": "L03 – quand les données dominent le prior (identifiabilité, règle de Cromwell, dimension fixe). Ex. 03 Step 4 « sensitivity analysis » p. 13.",
+    "rappel": "**Les données dominent le prior** (posteriors de priors différents qui convergent) sous trois conditions :\n\n1. **Identifiabilité** : des $\\theta$ différents donnent des lois de $y$ différentes. Une direction non identifiée garde son prior. Ex. $Y \\sim \\mathcal{N}(\\theta_1+\\theta_2,1)$ : seule la somme est apprise. Avec $\\theta_i \\sim \\mathcal{N}(0,1)$ iid, $\\theta_1+\\theta_2$ et $\\delta = \\theta_1-\\theta_2$ sont normaux et non corrélés ($\\mathrm{Cov} = 1-1 = 0$), donc indépendants. La vraisemblance ne dépend que de la somme, donc le posterior de $\\delta =$ son prior, pour tout $n$.\n2. **Règle de Cromwell** : si $p(\\theta_0) = 0$, alors $p(\\theta_0 \\mid y) \\propto p(y \\mid \\theta_0) \\cdot 0 = 0$ pour toujours. Il ne faut jamais donner une densité nulle à une valeur plausible.\n3. **Dimension fixe** : dans un modèle hiérarchique, chaque groupe ajoute un paramètre, donc la dimension croît avec les données et la condition *n’est pas* remplie (le prior des paramètres de groupe ne s’efface pas)."
+  },
+  {
+    "id": "3.3",
+    "week": 3,
+    "uncertain": false,
+    "question": "Let $\\theta \\in (0,1)$ be a success probability. Which statements about flat priors and reparametrization are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "under the log-odds $\\varphi = \\log\\frac{\\theta}{1-\\theta}$, the uniform prior on $\\theta$ becomes the standard logistic density $p_\\varphi(\\varphi) = \\frac{e^\\varphi}{(1+e^\\varphi)^2}$ on $\\mathbb{R}$"
+      },
+      {
+        "letter": "b",
+        "text": "a prior flat in $\\theta$ stays flat under every strictly monotone differentiable $g$, because $P(\\theta \\in A) = P(g(\\theta) \\in g(A))$ for every set $A$"
+      },
+      {
+        "letter": "c",
+        "text": "a prior flat in $\\theta$ stays flat under $\\varphi = \\theta^2$, since squaring is strictly increasing on $(0,1)$"
+      },
+      {
+        "letter": "d",
+        "text": "a flat prior on the log-odds $\\varphi \\in \\mathbb{R}$ corresponds to the Haldane prior $p(\\theta) \\propto \\theta^{-1}(1-\\theta)^{-1}$ on $(0,1)$"
+      },
+      {
+        "letter": "e",
+        "text": "the uniform prior on $\\theta$ is the parametrization-free representation of ignorance, so every analyst who « knows nothing » about the model arrives at it"
+      }
+    ],
+    "correct": [
+      "a",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "$\\theta = \\frac{e^\\varphi}{1+e^\\varphi}$, $\\frac{d\\theta}{d\\varphi} = \\frac{e^\\varphi}{(1+e^\\varphi)^2}$ : la densité logistique standard."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Le Jacobien $|d\\theta/d\\varphi|$ change la densité ; l’égalité des probabilités d’ensembles ne rend pas la densité plate."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "$\\theta = \\sqrt{\\varphi}$ donne $p(\\varphi) = \\frac{1}{2\\sqrt{\\varphi}}$, qui n’est pas plat."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$p(\\theta) = |d\\varphi/d\\theta| = \\frac{1}{\\theta(1-\\theta)}$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "« Plat » dépend de la paramétrisation (cf. b, c, d)."
+      }
+    },
+    "reference": "L03 – non-invariance des priors plats, changement de variable pour les densités. Ex. 03 Step 5 p. 16 ; Exercices 03 Ex. 4.",
+    "rappel": "**Changement de variable** : si $\\varphi = g(\\theta)$ avec $g$ monotone dérivable, alors\n\n$$\np_\\varphi(\\varphi) = p_\\theta\\bigl(g^{-1}(\\varphi)\\bigr)\\,\\Bigl|\\frac{d\\theta}{d\\varphi}\\Bigr|.\n$$\n\nLe Jacobien $|d\\theta/d\\varphi|$ déforme la densité : **un prior plat dans un paramétrage ne l’est pas dans un autre**. Les probabilités d’ensembles se conservent, pas la forme de la densité.\n\n- $\\theta \\sim U(0,1)$, $\\varphi = \\operatorname{logit}\\theta$ : $\\theta = \\frac{e^\\varphi}{1+e^\\varphi}$ et $\\frac{d\\theta}{d\\varphi} = \\frac{e^\\varphi}{(1+e^\\varphi)^2}$, soit la densité logistique standard.\n- Plat en $\\varphi = \\operatorname{logit}\\theta$ : $p(\\theta) = \\bigl|\\frac{d\\varphi}{d\\theta}\\bigr| = \\frac{1}{\\theta(1-\\theta)}$, le prior de Haldane.\n- $\\varphi = \\theta^2$ : $\\theta = \\sqrt{\\varphi}$, donc $p(\\varphi) = \\frac{1}{2\\sqrt{\\varphi}}$, pas plat.\n\n« Ne rien savoir » n’a donc pas de traduction unique en prior plat. C’est la motivation du prior de Jeffreys."
+  },
+  {
+    "id": "3.4",
+    "week": 3,
+    "uncertain": false,
+    "question": "The Haldane prior $p(\\theta) \\propto \\theta^{-1}(1-\\theta)^{-1}$ is combined with $Y \\sim \\mathrm{Bin}(n,\\theta)$, and $y$ successes are observed. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the posterior is $\\mathrm{Beta}(y+1,n-y+1)$"
+      },
+      {
+        "letter": "b",
+        "text": "for $0 < y < n$ the posterior is $\\mathrm{Beta}(y,n-y)$, a proper distribution"
+      },
+      {
+        "letter": "c",
+        "text": "the posterior is proper for every dataset, because multiplying an improper prior by a likelihood always produces a proper posterior"
+      },
+      {
+        "letter": "d",
+        "text": "under the Haldane prior the prior probability $P(\\theta > 1/2)$ is well defined and equals $1/2$ by symmetry"
+      },
+      {
+        "letter": "e",
+        "text": "for $y = 0$ the formal posterior kernel $\\theta^{-1}(1-\\theta)^{n-1}$ has an infinite integral over $(0,1)$, so no posterior exists"
+      }
+    ],
+    "correct": [
+      "b",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Ce serait le résultat avec un prior uniforme."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "$\\theta^{y-1}(1-\\theta)^{n-y-1}$, soit $\\mathrm{Beta}(y,n-y)$, propre si $y \\ge 1$ et $n-y \\ge 1$."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Contre-exemple : (e)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Le prior est impropre (masse infinie), donc les probabilités a priori ne sont pas définies."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "$\\int_0 \\theta^{-1}d\\theta = \\infty$ : il n’y a pas de posterior."
+      }
+    },
+    "reference": "L03 – prior de Haldane, priors impropres, propriété du posterior. Exercices 03 Ex. 2(d).",
+    "rappel": "**Haldane** : $p(\\theta) \\propto \\theta^{-1}(1-\\theta)^{-1}$, soit « $\\mathrm{Beta}(0,\\, 0)$ », plat sur l’échelle logit. Il est **impropre** : $\\int_0^1 \\frac{d\\theta}{\\theta(1-\\theta)} = \\infty$. Ce n’est pas une loi, donc des probabilités a priori comme $P(\\theta > \\frac{1}{2})$ ne sont pas définies.\n\nAvec $y$ succès sur $n$ : posterior $\\propto \\theta^{y-1}(1-\\theta)^{n-y-1}$, soit **Beta($y,n-y$)**, propre seulement si $0 < y < n$. Si $y = 0$, le noyau $\\theta^{-1}(1-\\theta)^{n-1}$ n’est pas intégrable en 0 : **pas de posterior**.\n\n**Règle générale** : un prior impropre peut donner un posterior impropre. Il faut toujours vérifier que $\\int p(y \\mid \\theta)p(\\theta)\\,d\\theta < \\infty$."
+  },
+  {
+    "id": "3.6",
+    "week": 3,
+    "uncertain": false,
+    "question": "Which statements about Jeffreys’ rule $p_J(\\theta) \\propto \\sqrt{I(\\theta)}$ are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "under a reparametrization $\\varphi = g(\\theta)$ the Fisher information transforms as $I(\\varphi) = I(\\theta)(d\\theta/d\\varphi)^2$, so taking the square root makes $\\sqrt{I}$ transform with one power of the Jacobian, as a density must"
+      },
+      {
+        "letter": "b",
+        "text": "Jeffreys’ rule commutes with reparametrization only when $g$ is affine"
+      },
+      {
+        "letter": "c",
+        "text": "for Bernoulli data with $s = 3$ successes in $n = 8$ trials, the posterior under the Jeffreys prior is $\\mathrm{Beta}(3.5,\\, 5.5)$"
+      },
+      {
+        "letter": "d",
+        "text": "the Jeffreys prior for the Bernoulli adds two pseudo-observations to the data, the same number as the uniform prior"
+      },
+      {
+        "letter": "e",
+        "text": "the Jeffreys prior for the Poisson rate, $p(\\lambda) \\propto \\lambda^{-1/2}$, is a proper distribution on $(0,\\infty)$"
+      }
+    ],
+    "correct": [
+      "a",
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "C’est exactement l’argument d’invariance."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "La règle commute avec *toute* reparamétrisation régulière : c’est tout son intérêt."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Jeffreys Bernoulli $=$ Beta(½, ½), donc Beta(3+½, 5+½)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Beta(½, ½) ajoute 1 pseudo-observation ; l’uniforme $\\mathrm{Beta}(1,\\, 1)$ en ajoute 2."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "$\\int_0^\\infty \\lambda^{-1/2}d\\lambda = \\infty$ : le prior est impropre."
+      }
+    },
+    "reference": "L03 – règle de Jeffreys et son invariance. Exercices 03 Ex. 4 ; Exercices 03 Ex. 6(b)(ii).",
+    "rappel": "**Information de Fisher** : $I(\\theta) = -\\mathbb{E}\\bigl[\\partial_\\theta^2\\log p(Y \\mid \\theta)\\bigr]$ ; pour $n$ observations iid, $I_n = nI_1$. **Reparamétrisation** : $I(\\varphi) = I(\\theta)\\bigl(\\frac{d\\theta}{d\\varphi}\\bigr)^2$, donc $\\sqrt{I(\\varphi)} = \\sqrt{I(\\theta)}\\bigl|\\frac{d\\theta}{d\\varphi}\\bigr|$, exactement comme une densité. **Jeffreys** $p_J(\\theta) \\propto \\sqrt{I(\\theta)}$ : appliquer la règle puis changer de variable donne le même résultat que changer de variable puis appliquer la règle, pour *toute* reparamétrisation monotone dérivable (pas seulement affine).\n\n| Modèle | $I(\\theta)$ | Jeffreys | Remarque |\n|---|---|---|---|\n| Bernoulli | $\\frac{1}{\\theta(1-\\theta)}$ | $\\mathrm{Beta}(\\frac{1}{2},\\frac{1}{2})$ | propre ; ajoute 1 pseudo-obs. (uniforme : 2) |\n| Poisson | $\\frac{1}{\\lambda}$ | $\\lambda^{-1/2}$ | impropre |\n| Exponentielle | $\\frac{1}{\\lambda^2}$ | $\\lambda^{-1}$ | impropre |\n\nBernoulli, $s$ succès sur $n$ : posterior $\\mathrm{Beta}(s+\\frac{1}{2},\\ n-s+\\frac{1}{2})$."
+  },
+  {
+    "id": "3.7",
+    "week": 3,
+    "uncertain": false,
+    "question": "Which statements about the reference prior (Bernardo) are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "it minimizes the expected Kullback-Leibler divergence from the prior to the posterior, so that the data change the prior as little as possible"
+      },
+      {
+        "letter": "b",
+        "text": "it is the uniform distribution on $\\Theta$, whatever the model"
+      },
+      {
+        "letter": "c",
+        "text": "in multiparameter models it never depends on which parameter is declared to be of interest and which are nuisance parameters"
+      },
+      {
+        "letter": "d",
+        "text": "for a regular one-parameter model it coincides with the Jeffreys prior $p(\\theta) \\propto \\sqrt{I(\\theta)}$"
+      },
+      {
+        "letter": "e",
+        "text": "it maximizes the expected Kullback-Leibler divergence from the prior to the posterior (the mutual information between $\\theta$ and $Y$), in the limit of infinitely many replications of the experiment"
+      }
+    ],
+    "correct": [
+      "d",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "C’est l’inverse : le reference prior *maximise* l’information apportée par les données (cf. e)."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "En dimension 1 régulière, c’est Jeffreys, qui n’est pas uniforme en général."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "En multiparamètre, il dépend du paramètre d’intérêt et de l’ordre des paramètres de nuisance."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "En dimension 1 régulière, il coïncide avec Jeffreys."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "C’est sa définition (information mutuelle maximale, limite de réplications)."
+      }
+    },
+    "reference": "L03 – reference priors (Bernardo).",
+    "rappel": "**Reference prior (Bernardo)** : le prior qui **maximise** l’information apportée par les données, c’est-à-dire l’espérance de la divergence KL du prior au posterior (l’information mutuelle entre $\\theta$ et $Y$), à la limite d’une infinité de réplications de l’expérience. En clair : le prior qui laisse les données dire le plus possible.\n\n- **Une dimension, modèle régulier** : il coïncide avec Jeffreys, $\\sqrt{I(\\theta)}$. Ce n’est donc pas l’uniforme en général.\n- **Plusieurs paramètres** : il dépend du paramètre déclaré d’intérêt et de l’ordre des paramètres de nuisance.\n\nPiège : « minimise » est faux, il *maximise*."
+  },
+  {
+    "id": "3.8",
+    "week": 3,
+    "uncertain": false,
+    "question": "A parameter $\\theta$ is known to be positive and to have $\\mathbb{E}[\\theta] = 5$; nothing else is known. The maximum-entropy prior for $\\theta$ is:",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$\\mathrm{Gamma}(5,\\, 1)$"
+      },
+      {
+        "letter": "b",
+        "text": "the Exponential distribution with rate 5"
+      },
+      {
+        "letter": "c",
+        "text": "the Exponential distribution with rate $1/5$"
+      },
+      {
+        "letter": "d",
+        "text": "$\\mathrm{U}(0,\\, 10)$"
+      },
+      {
+        "letter": "e",
+        "text": "$\\mathcal{N}(5,25)$"
+      }
+    ],
+    "correct": [
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Support $(0,\\infty)$ et moyenne fixée : le MaxEnt est l’exponentielle de moyenne 5, donc de **rate 1/5**. Piège : rate 5 donnerait une moyenne de $1/5$."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Support $(0,\\infty)$ et moyenne fixée : le MaxEnt est l’exponentielle de moyenne 5, donc de **rate 1/5**. Piège : rate 5 donnerait une moyenne de $1/5$."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Support $(0,\\infty)$ et moyenne fixée : le MaxEnt est l’exponentielle de moyenne 5, donc de **rate 1/5**. Piège : rate 5 donnerait une moyenne de $1/5$."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Support $(0,\\infty)$ et moyenne fixée : le MaxEnt est l’exponentielle de moyenne 5, donc de **rate 1/5**. Piège : rate 5 donnerait une moyenne de $1/5$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Support $(0,\\infty)$ et moyenne fixée : le MaxEnt est l’exponentielle de moyenne 5, donc de **rate 1/5**. Piège : rate 5 donnerait une moyenne de $1/5$."
+      }
+    },
+    "reference": "L03 – priors à entropie maximale (cas continu). Exercices 03 Ex. 5 et Ex. 6(b)(i).",
+    "rappel": "**Maximum d’entropie** : parmi les lois qui respectent les contraintes connues ($\\mathbb{E}[f_k(\\theta)] = c_k$), choisir celle d’entropie $H(p) = -\\int p\\log p$ maximale, la moins informative compatible avec ce qu’on sait. Solution : $p(\\theta) \\propto \\exp\\{\\sum_k \\lambda_k f_k(\\theta)\\}$.\n\n| Ce qu’on sait | Loi MaxEnt |\n|---|---|\n| support fini, rien d’autre | uniforme |\n| support $(0,\\infty)$, moyenne $m$ | Exponentielle de **rate** $1/m$ (moyenne $m$) |\n| support $\\mathbb{R}$, moyenne et variance | Normale |\n\nRappel : l’Exponentielle de rate $r$ a pour moyenne $1/r$. Moyenne $5 \\Rightarrow$ rate $1/5$."
+  },
+  {
+    "id": "3.11",
+    "week": 3,
+    "uncertain": false,
+    "question": "Which statements about prior predictive checks are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the check is carried out on the parameter scale, since that is the scale on which the prior is specified"
+      },
+      {
+        "letter": "b",
+        "text": "draws from the prior predictive distribution are obtained by drawing $\\theta^{(s)} \\sim p(\\theta)$ and then $\\tilde{y}^{(s)} \\sim p(\\tilde{y} \\mid \\theta^{(s)})$; keeping only $\\tilde{y}^{(s)}$ marginalizes over $\\theta$"
+      },
+      {
+        "letter": "c",
+        "text": "a prior that passes the check is thereby shown to be the correct prior"
+      },
+      {
+        "letter": "d",
+        "text": "the plausibility criteria for the simulated data should be fixed before the simulated data are inspected"
+      },
+      {
+        "letter": "e",
+        "text": "for a logistic-regression intercept, $\\beta_0 \\sim \\mathcal{N}(0,100^2)$ is weakly informative, because it is proper and spreads its mass evenly over the probability scale"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Le check se fait sur l’échelle des *données* (observables)."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "Simulation en deux étapes, puis marginalisation."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Passer le check montre seulement que le prior n’est pas absurde."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Il faut fixer les critères avant de regarder, pour éviter d’ajuster a posteriori."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Sur l’échelle logit, $\\mathcal{N}(0,100^2)$ met presque toute la masse près de 0 ou 1 en probabilité : c’est tout sauf uniforme."
+      }
+    },
+    "reference": "L03 – prior predictive checks. Ex. 03 Step 2 p. 7–10 ; Exercices 03 Ex. 3.",
+    "rappel": "**Prédictive a priori** : $p(\\tilde{y}) = \\int p(\\tilde{y} \\mid \\theta)\\,p(\\theta)\\,d\\theta$, ce que le modèle prédit *avant* les données. **Simulation** : tirer $\\theta^{(s)} \\sim p(\\theta)$, puis $\\tilde{y}^{(s)} \\sim p(\\tilde{y} \\mid \\theta^{(s)})$ ; garder les $\\tilde{y}^{(s)}$ revient à intégrer $\\theta$. **Le check** : comparer les $\\tilde{y}$ simulés à ce qu’on sait du phénomène, **sur l’échelle des données** (on a une intuition sur des clients par heure, rarement sur un log-taux). Fixer les critères de plausibilité *avant* de regarder les simulations.\n\n- Passer le check montre seulement que le prior n’est pas absurde, pas qu’il est « correct ».\n- **Vague $\\ne$ non informatif** : $\\beta_0 \\sim \\mathcal{N}(0,100^2)$ sur l’échelle logit donne $|\\beta_0| > 5$ avec proba $\\approx 0.96$, donc une probabilité $\\operatorname{logit}^{-1}(\\beta_0) < 0.007$ ou $> 0.993$ presque toujours. Le prior concentre la masse aux extrêmes, au lieu de l’étaler sur $[0,1]$."
+  },
+  {
+    "id": "4.1",
+    "week": 4,
+    "uncertain": false,
+    "question": "Which statements about Bayes estimators are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the posterior mode (MAP) is invariant under strictly monotone nonlinear reparametrizations"
+      },
+      {
+        "letter": "b",
+        "text": "the frequentist risk $R(\\theta,\\delta)$ averages the loss over the parameter $\\theta$ with the data held fixed"
+      },
+      {
+        "letter": "c",
+        "text": "the Bayes estimator minimizes the posterior expected loss $\\rho(a \\mid y) = \\mathbb{E}[L(\\theta,a) \\mid y]$ over the actions $a$"
+      },
+      {
+        "letter": "d",
+        "text": "two analysts with the same posterior but different loss functions should report the same point estimate, since the posterior is the complete inference"
+      },
+      {
+        "letter": "e",
+        "text": "under squared error loss the smallest attainable posterior expected loss equals the posterior variance $\\mathrm{Var}[\\theta \\mid y]$"
+      }
+    ],
+    "correct": [
+      "c",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Le MAP n’est pas invariant (le Jacobien déplace le mode) ; la médiane, elle, l’est."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Le risque fréquentiste moyenne sur les *données* à $\\theta$ fixé."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "C’est la définition de l’estimateur de Bayes."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Une perte différente donne un estimateur différent (moyenne, médiane, quantile…)."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Sous perte quadratique, l’estimateur est la moyenne a posteriori, et la perte minimale vaut $\\mathrm{Var}[\\theta \\mid y]$."
+      }
+    },
+    "reference": "L04 – fonctions de perte, estimateurs de Bayes, risque fréquentiste. Ex. 04 Part C p. 9 ; Exercices 04 Ex. 1.",
+    "rappel": "**Cadre décisionnel** : perte $L(\\theta,a) =$ coût de l’action $a$ si la vérité est $\\theta$. **Perte espérée a posteriori** : $\\rho(a \\mid y) = \\mathbb{E}[L(\\theta,a) \\mid y]$. L’**estimateur de Bayes** minimise $\\rho$ sur $a$.\n\n| Perte | Estimateur de Bayes | Invariant ? |\n|---|---|---|\n| quadratique $(\\theta-a)^2$ | moyenne (perte min $= \\mathrm{Var}[\\theta \\mid y]$) | non |\n| absolue $\\lvert\\theta-a\\rvert$ | médiane | oui |\n| check $c_u(\\theta-a)_+ + c_o(a-\\theta)_+$ | quantile de niveau $\\frac{c_u}{c_u+c_o}$ | oui |\n| 0–1 | mode (MAP) | non |\n\n« Invariant ? » : si on reparamètre par $g$ monotone non linéaire, l’estimateur de $g(\\theta)$ est-il $g(\\text{estimateur de }\\theta)$ ? Le Jacobien déplace le mode, et la moyenne ne commute pas avec $g$.\n\n- Même posterior mais pertes différentes $\\Rightarrow$ estimations différentes. Le posterior est l’inférence complète, l’estimation ponctuelle dépend de l’usage.\n- **Risque fréquentiste** $R(\\theta,\\delta) = \\mathbb{E}_{Y \\mid \\theta}[L(\\theta,\\delta(Y))]$ : moyenne sur les *données*, à $\\theta$ fixé. (Le risque de Bayes moyenne ensuite $R$ sur le prior.)"
+  },
+  {
+    "id": "4.3",
+    "week": 4,
+    "uncertain": false,
+    "question": "Which statements about equal-tailed (ET) and highest posterior density (HPD) credible intervals are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "for a right-skewed unimodal posterior the ET interval is shifted toward the mode relative to the HPD interval"
+      },
+      {
+        "letter": "b",
+        "text": "for a unimodal continuous posterior the HPD interval is the shortest interval with posterior probability $1-\\alpha$"
+      },
+      {
+        "letter": "c",
+        "text": "the ET and HPD intervals coincide for every unimodal posterior"
+      },
+      {
+        "letter": "d",
+        "text": "mapping the endpoints of an HPD interval through a strictly increasing nonlinear transformation $g$ gives the HPD interval of $g(\\theta)$"
+      },
+      {
+        "letter": "e",
+        "text": "for a bimodal posterior the HPD region can be a union of two disjoint intervals, whereas a single ET interval may cover a low-density valley between the modes"
+      }
+    ],
+    "correct": [
+      "b",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "C’est l’inverse : la HPD est décalée vers le mode, l’ET vers la queue."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "C’est la propriété définissante de la HPD."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Ils coïncident pour une loi unimodale *symétrique*."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "La HPD n’est pas invariante par transformation non linéaire (l’ET l’est)."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "La région HPD peut être disjointe, alors que l’ET peut couvrir une vallée de faible densité."
+      }
+    },
+    "reference": "L04 – intervalles ET vs HPD. Ex. 04 Part D p. 12 ; Exercices 04 Ex. 2.",
+    "rappel": "**ET (equal-tailed)** : $[q_{\\alpha/2},\\, q_{1-\\alpha/2}]$, une probabilité $\\alpha/2$ dans chaque queue. **HPD** : $\\{\\theta : p(\\theta \\mid y) \\ge k\\}$ avec $k$ choisi pour une masse $1-\\alpha$ ; toute valeur dedans est plus dense que toute valeur dehors.\n\n- Loi unimodale : la HPD est **l’intervalle le plus court** de masse $1-\\alpha$ (densités égales aux deux bornes).\n- Loi **symétrique** unimodale : ET $=$ HPD. Loi **asymétrique à droite** : la HPD se décale vers le mode (à gauche), l’ET vers la queue (à droite).\n- Loi **bimodale** : la HPD peut être une réunion d’intervalles disjoints ; un ET unique peut couvrir la vallée de faible densité entre les modes.\n- **Invariance** : l’ET se transporte par toute $g$ croissante (les quantiles se transportent), pas la HPD (la densité est déformée par le Jacobien)."
+  },
+  {
+    "id": "4.4",
+    "week": 4,
+    "uncertain": false,
+    "question": "A 90% equal-tailed credible interval for a proportion $\\theta$ is $[0.2,0.6]$. For the odds $\\phi = \\theta/(1-\\theta)$, a 90% equal-tailed credible interval is:",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$[0.25,1.5]$"
+      },
+      {
+        "letter": "b",
+        "text": "$[0.2,0.6]$, since credible intervals do not change under transformations"
+      },
+      {
+        "letter": "c",
+        "text": "$[2/3,4]$"
+      },
+      {
+        "letter": "d",
+        "text": "not obtainable from the endpoints; the posterior of $\\phi$ has to be derived first"
+      },
+      {
+        "letter": "e",
+        "text": "$[0.25,1.5]$, but only at a credibility level below 90%"
+      }
+    ],
+    "correct": [
+      "a"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Les quantiles se transportent par une fonction croissante : $0.2/0.8 = 0.25$ et $0.6/0.4 = 1.5$. On garde la même crédibilité de 90%, donc l’option e est fausse."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Les quantiles se transportent par une fonction croissante : $0.2/0.8 = 0.25$ et $0.6/0.4 = 1.5$. On garde la même crédibilité de 90%, donc l’option e est fausse."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Les quantiles se transportent par une fonction croissante : $0.2/0.8 = 0.25$ et $0.6/0.4 = 1.5$. On garde la même crédibilité de 90%, donc l’option e est fausse."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Les quantiles se transportent par une fonction croissante : $0.2/0.8 = 0.25$ et $0.6/0.4 = 1.5$. On garde la même crédibilité de 90%, donc l’option e est fausse."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Les quantiles se transportent par une fonction croissante : $0.2/0.8 = 0.25$ et $0.6/0.4 = 1.5$. On garde la même crédibilité de 90%, donc l’option e est fausse."
+      }
+    },
+    "reference": "L04 – invariance des intervalles ET par transformation monotone. Exercices 04 Ex. 2(b,c).",
+    "rappel": "**Les quantiles se transportent par une fonction croissante** : si $g$ est strictement croissante, $P(\\theta \\le q) = P(g(\\theta) \\le g(q))$, donc le quantile $p$ de $g(\\theta)$ vaut $g(\\text{quantile } p \\text{ de }\\theta)$. Un ET $[a,b]$ pour $\\theta$ donne donc l’ET $[g(a),g(b)]$ pour $g(\\theta)$, *au même niveau*. Si $g$ est décroissante, les bornes s’échangent.\n\nIci les odds $\\phi = \\frac{\\theta}{1-\\theta}$ sont croissantes sur $(0,1)$ : $[\\frac{0.2}{0.8},\\frac{0.6}{0.4}] = [0.25,\\ 1.5]$, toujours à 90%. (Cela ne marche pas pour une HPD.)"
+  },
+  {
+    "id": "4.5",
+    "week": 4,
+    "uncertain": false,
+    "question": "Which statements about credible intervals, confidence intervals and coverage are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "a 95% confidence interval satisfies $P(\\theta \\in C(y_{obs}) \\mid y_{obs}) = 0.95$ for the dataset that was observed"
+      },
+      {
+        "letter": "b",
+        "text": "a 95% credible interval $C$ satisfies $P(\\theta \\in C \\mid y) = 0.95$, a statement conditional on the observed data"
+      },
+      {
+        "letter": "c",
+        "text": "when the true parameter is fixed and the prior is concentrated far from it, the credible interval still covers the truth at the nominal rate in repeated sampling"
+      },
+      {
+        "letter": "d",
+        "text": "when the true parameter is redrawn from the prior for each simulated dataset, the $1-\\alpha$ credible interval has frequentist coverage exactly $1-\\alpha$, by the law of iterated expectations"
+      },
+      {
+        "letter": "e",
+        "text": "a credible interval requires no prior, whereas a confidence interval does"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Un IC n’a pas de probabilité conditionnelle aux données observées."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "C’est la définition de l’intervalle de crédibilité."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Avec un prior dogmatique et loin de la vérité, la couverture s’effondre (Exercices 04 Ex. 6)."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Si la vérité est tirée du prior, la couverture moyenne vaut exactement $1-\\alpha$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "C’est l’inverse."
+      }
+    },
+    "reference": "L04 – couverture des intervalles de crédibilité. Ex. 04 Part G p. 21 ; Exercices 04 Ex. 6.",
+    "rappel": "**Crédibilité** : $P(\\theta \\in C \\mid y) = 1-\\alpha$, conditionnel aux données observées ; il faut un prior. **Confiance** : $P_{Y \\mid \\theta}(\\theta \\in C(Y)) = 1-\\alpha$ pour tout $\\theta$, une probabilité sur les données répétées ; pas de prior, et aucune probabilité pour l’intervalle calculé.\n\n**Couverture fréquentiste d’un intervalle de crédibilité** :\n\n- Si la vérité est *tirée du prior* à chaque jeu de données, la couverture vaut exactement $1-\\alpha$ (espérances itérées) : $P(\\theta \\in C(Y)) = \\mathbb{E}\\bigl[P(\\theta \\in C(Y) \\mid Y)\\bigr] = \\mathbb{E}[1-\\alpha] = 1-\\alpha$.\n- À *$\\theta$ fixé*, aucune garantie. Avec un prior serré et loin de la vérité, l’intervalle est étroit et décentré, et la couverture s’effondre (Exercices 04 Ex. 6)."
+  },
+  {
+    "id": "4.7",
+    "week": 4,
+    "uncertain": false,
+    "question": "Monthly counts are modelled as iid $\\mathrm{Poisson}(\\lambda)$. From the same posterior, a 90% credible interval for the rate $\\lambda$ is $[10.2,13.9]$ and a 90% posterior predictive interval for next month’s count is $[6,18]$. Which statement is correct?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the two intervals should coincide for a correctly computed model, so one of them contains an error"
+      },
+      {
+        "letter": "b",
+        "text": "as the number of observed months grows, both intervals shrink to a single point"
+      },
+      {
+        "letter": "c",
+        "text": "the predictive interval is wider because a single month’s count carries Poisson sampling noise in addition to the uncertainty about $\\lambda$"
+      },
+      {
+        "letter": "d",
+        "text": "the predictive interval is wider because the predictive distribution was computed by plugging a point estimate of $\\lambda$ into the Poisson"
+      },
+      {
+        "letter": "e",
+        "text": "the interval for $\\lambda$ is a confidence interval and the interval for the count is a credible interval, which explains the difference"
+      }
+    ],
+    "correct": [
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Ce ne sont pas les mêmes objets : l’un porte sur un paramètre, l’autre sur une observation future."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "L’intervalle prédictif garde le bruit de Poisson, il ne se réduit pas à un point."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Bruit de Poisson $+$ incertitude sur $\\lambda$."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Un plug-in donnerait un intervalle *plus étroit*, pas plus large."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Les deux sont bayésiens."
+      }
+    },
+    "reference": "L04 – intervalle de crédibilité vs intervalle prédictif. Ex. 04 Part E p. 14 ; Exercices 04 Ex. 4.",
+    "rappel": "Deux objets différents tirés du même posterior :\n\n- **Intervalle de crédibilité pour $\\lambda$** : il ne reflète que l’incertitude sur le *paramètre*. Quand $n \\to \\infty$, il se réduit à un point.\n- **Intervalle prédictif pour un comptage futur $\\tilde{y}$** : $\\mathrm{Var}(\\tilde{y} \\mid y) = \\mathbb{E}[\\lambda \\mid y]+\\mathrm{Var}(\\lambda \\mid y)$ pour un Poisson (bruit de Poisson $+$ incertitude sur $\\lambda$). Quand $n \\to \\infty$, le second terme disparaît mais pas le premier : l’intervalle tend vers celui d’une $\\mathrm{Poisson}(\\lambda_0)$, pas vers un point.\n\nL’intervalle prédictif est donc toujours plus large. Un plug-in $p(\\tilde{y} \\mid \\hat{\\lambda})$ donnerait au contraire un intervalle *plus étroit* (il oublie le 2$^{\\text{e}}$ terme). Les deux intervalles sont bayésiens."
+  },
+  {
+    "id": "4.8",
+    "week": 4,
+    "uncertain": false,
+    "question": "A posterior predictive check uses the test statistic $T(y) = \\max_i y_i$. Of $S = 200$ replicated datasets, 196 have $T(y^{rep}) \\ge T(y)$. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the Bayesian p-value is $p_B = 0.98$"
+      },
+      {
+        "letter": "b",
+        "text": "the Bayesian p-value is $p_B = 0.02$"
+      },
+      {
+        "letter": "c",
+        "text": "because $p_B > 0.05$ the model is not rejected, in the same way as in a classical significance test"
+      },
+      {
+        "letter": "d",
+        "text": "a $p_B$ this close to 1 flags a feature the model fails to reproduce: the observed maximum is smaller than almost every replicated maximum"
+      },
+      {
+        "letter": "e",
+        "text": "under a correctly specified model $p_B$ is $\\mathrm{Uniform}(0,\\, 1)$, so a value of 0.98 is no more informative than a value of 0.5"
+      }
+    ],
+    "correct": [
+      "a",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "$p_B = P(T(y^{rep}) \\ge T(y) \\mid y) = 196/200 = 0.98$."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Ce serait l’autre sens de l’inégalité."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Une PPC n’est pas un test à seuil, et une valeur proche de 0 *ou* de 1 signale un problème."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Le modèle produit presque toujours des maxima plus grands que celui observé."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Sous un modèle correct, $p_B$ n’est pas uniforme (concentrée vers 0.5), et 0.98 est un signal."
+      }
+    },
+    "reference": "L04 – posterior predictive checks, p-value bayésienne. Ex. 04 Part F p. 18.",
+    "rappel": "**Posterior predictive check (PPC)** : simuler des jeux $y^{rep} \\sim p(y^{rep} \\mid y)$, choisir une statistique $T$, et comparer $T(y)$ à la distribution des $T(y^{rep})$.\n\n$$\np_B = P\\bigl(T(y^{rep}) \\ge T(y) \\mid y\\bigr) \\approx \\frac{\\#\\{s : T(y^{rep,s}) \\ge T(y)\\}}{S}.\n$$\n\n- $p_B$ proche de **0 ou de 1** : le modèle ne reproduit pas cet aspect des données. Ici $p_B = 0.98$ : le maximum observé est plus petit que presque tous les maxima simulés.\n- Ce n’est pas un test à seuil (« $> 0.05$, donc OK » est faux).\n- Sous un modèle correct, $p_B$ n’est **pas** uniforme : il est concentré vers 0.5, car les données servent deux fois (ajustement et check). Une valeur extrême est donc un signal."
+  },
+  {
+    "id": "4.9",
+    "week": 4,
+    "uncertain": false,
+    "question": "A conjugate Gamma-Poisson model is fitted to count data and a posterior predictive check is planned. Which test statistic $T$ has the most power to detect a failure of the Poisson likelihood?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the sample mean $\\bar{y}$"
+      },
+      {
+        "letter": "b",
+        "text": "the ratio of the sample variance to the sample mean (the dispersion index)"
+      },
+      {
+        "letter": "c",
+        "text": "the total count $\\sum_i y_i$"
+      },
+      {
+        "letter": "d",
+        "text": "the sample size $n$"
+      },
+      {
+        "letter": "e",
+        "text": "the posterior mean of $\\lambda$ recomputed from each replicated dataset"
+      }
+    ],
+    "correct": [
+      "b"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "L’hypothèse la plus restrictive de Poisson est Var $=$ moyenne, donc l’indice de dispersion. La moyenne et le total sont reproduits par construction (le modèle est ajusté dessus), et $n$ est fixe."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "L’hypothèse la plus restrictive de Poisson est Var $=$ moyenne, donc l’indice de dispersion. La moyenne et le total sont reproduits par construction (le modèle est ajusté dessus), et $n$ est fixe."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "L’hypothèse la plus restrictive de Poisson est Var $=$ moyenne, donc l’indice de dispersion. La moyenne et le total sont reproduits par construction (le modèle est ajusté dessus), et $n$ est fixe."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "L’hypothèse la plus restrictive de Poisson est Var $=$ moyenne, donc l’indice de dispersion. La moyenne et le total sont reproduits par construction (le modèle est ajusté dessus), et $n$ est fixe."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "L’hypothèse la plus restrictive de Poisson est Var $=$ moyenne, donc l’indice de dispersion. La moyenne et le total sont reproduits par construction (le modèle est ajusté dessus), et $n$ est fixe."
+      }
+    },
+    "reference": "L04 – choix de la statistique de test d’une PPC. Exercices 04 Ex. 5.",
+    "rappel": "**Choisir $T$ pour une PPC** : visez ce que le modèle *ne contraint pas* à reproduire. Les aspects ajustés directement (moyenne, total) sont reproduits par construction, donc un check dessus passe toujours et n’apprend rien. Ici :\n\n- la moyenne, le total et la moyenne a posteriori recalculée suivent tous la moyenne, que le modèle reproduit ;\n- $n$ est fixé, il est identique dans chaque réplique ;\n- l’hypothèse la plus restrictive de Poisson est **Var = moyenne**. L’indice de dispersion $\\frac{\\text{variance}}{\\text{moyenne}}$ détecte une surdispersion (Exercices 04 Ex. 5)."
+  },
+  {
+    "id": "4.10",
+    "week": 4,
+    "uncertain": false,
+    "question": "Which statements about the large-sample behaviour of the posterior are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "with enough data the posterior concentrates on the true value $\\theta_0$ even if the prior assigns zero density to a neighbourhood of $\\theta_0$"
+      },
+      {
+        "letter": "b",
+        "text": "if the data come from a distribution outside the model, the posterior stays wide as $n$ grows, which signals the misfit from inside the model"
+      },
+      {
+        "letter": "c",
+        "text": "in the large-sample limit the prior dominates the likelihood, because the log-prior grows with $n$ while the log-likelihood stays bounded"
+      },
+      {
+        "letter": "d",
+        "text": "for iid data from an identifiable regular model and a prior with positive density at the true value $\\theta_0$, the posterior concentrates on $\\theta_0$ as $n \\to \\infty$"
+      },
+      {
+        "letter": "e",
+        "text": "if the data come from a distribution outside the model, the posterior still concentrates, on the parameter $\\theta^*$ of the model closest to the data distribution in Kullback-Leibler divergence"
+      }
+    ],
+    "correct": [
+      "d",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Règle de Cromwell : une densité nulle reste nulle."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Même mal spécifié, le posterior se concentre (cf. e), donc il ne signale rien « de l’intérieur »."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "C’est la log-vraisemblance qui croît avec $n$ ; le log-prior est fixe."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Consistance sous les conditions usuelles."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Il se concentre sur le point $\\theta^*$ le plus proche au sens de KL."
+      }
+    },
+    "reference": "L04 – comportement asymptotique du posterior (consistance, modèle mal spécifié).",
+    "rappel": "**Modèle bien spécifié** (iid, identifiable, régulier, prior à densité $> 0$ en $\\theta_0$) : le posterior se **concentre sur** $\\theta_0$ quand $n \\to \\infty$, et devient approximativement $\\mathcal{N}(\\hat{\\theta}_{ML},\\ I(\\theta_0)^{-1}/n)$ (Bernstein–von Mises). **Pourquoi le prior s’efface** : $\\log p(\\theta \\mid y) = \\underbrace{\\textstyle\\sum_i \\log p(y_i \\mid \\theta)}_{\\text{croît comme } n} + \\underbrace{\\log p(\\theta)}_{\\text{fixe}} + \\text{cste}$. **Exception** (Cromwell) : une densité a priori nulle autour de $\\theta_0$ reste nulle. **Modèle mal spécifié** (données hors du modèle) : le posterior **se concentre quand même**, sur $\\theta^* = \\arg\\min_\\theta \\mathrm{KL}(p_{\\text{vrai}} \\,\\|\\, p_\\theta)$, le point du modèle le plus proche des données. Il devient étroit et sûr de lui, sans aucun signal interne : il faut des PPC pour détecter l’erreur."
+  },
+  {
+    "id": "5.1",
+    "week": 5,
+    "uncertain": false,
+    "question": "Which statements about the marginal likelihood (evidence) $p(y \\mid M) = \\int p(y \\mid \\theta,M)p(\\theta \\mid M)\\,d\\theta$ of a model $M$ are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "for inference about $\\theta$ within a fixed model the evidence is a constant that can be dropped, and for the same reason it plays no role in comparing models"
+      },
+      {
+        "letter": "b",
+        "text": "the evidence equals the maximized likelihood $\\max_\\theta p(y \\mid \\theta,M)$, so it can only increase when parameters are added to the model"
+      },
+      {
+        "letter": "c",
+        "text": "the evidence is the prior predictive density of the data, evaluated at the data that were observed"
+      },
+      {
+        "letter": "d",
+        "text": "as the sample size grows, the dependence of the evidence on the prior washes out in the same way as it does for the posterior"
+      },
+      {
+        "letter": "e",
+        "text": "models with different numbers of parameters have comparable evidences, because each evidence is a density over the same objects, namely datasets"
+      }
+    ],
+    "correct": [
+      "c",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Constante pour l’inférence *dans* un modèle, mais c’est l’objet central pour *comparer* des modèles."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "L’évidence est une *moyenne* de la vraisemblance sur le prior, pas un maximum, et elle pénalise la complexité."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "$p(y \\mid M)$ est la prédictive a priori évaluée en $y_{obs}$."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "L’évidence reste sensible au prior (cf. 5.3), contrairement au posterior."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Ce sont toutes des densités sur l’espace des données."
+      }
+    },
+    "reference": "L05 – vraisemblance marginale (évidence). Ex. 05 Part A p. 5 ; Exercices 05 Ex. 1.",
+    "rappel": "**Évidence** : $p(y \\mid M) = \\int p(y \\mid \\theta,M)\\,p(\\theta \\mid M)\\,d\\theta$.\n\n- C’est la **prédictive a priori évaluée en $y_{obs}$** : à quel point le modèle (vraisemblance $+$ prior) prédisait les données observées.\n- C’est une **moyenne** de la vraisemblance pondérée par le prior, pas un maximum. Un modèle trop flexible étale son prior sur des valeurs qui prédisent mal, ce qui fait baisser l’évidence (rasoir d’Occam automatique).\n- Dans un modèle, c’est une constante (normalisation). Entre modèles, c’est l’objet central : $BF_{12} = \\frac{p(y|M_1)}{p(y|M_2)}$ et $P(M_k \\mid y) \\propto p(M_k)\\,p(y \\mid M_k)$.\n- Elle reste **sensible au prior** même pour $n$ grand (voir 5.3), contrairement au posterior.\n- Les évidences de modèles de dimensions différentes sont comparables : ce sont toutes des densités sur le même espace, celui des données."
+  },
+  {
+    "id": "5.3",
+    "week": 5,
+    "uncertain": false,
+    "question": "In a Normal model with known $\\sigma^2$, the sharp null $M_0 : \\mu = 0$ is tested against $M_1 : \\mu \\sim \\mathcal{N}(0,\\tau^2)$. The data are held fixed and the prior standard deviation $\\tau$ of the alternative is varied. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "as $\\tau \\to \\infty$, $BF_{01} \\to \\infty$ for any fixed dataset, because the evidence of the diffuse alternative decays like $1/\\tau$"
+      },
+      {
+        "letter": "b",
+        "text": "as $\\tau \\to \\infty$, $BF_{01} \\to 0$, because the alternative becomes flexible enough to fit any data"
+      },
+      {
+        "letter": "c",
+        "text": "replacing the prior on $\\mu$ under $M_1$ by a vague but proper prior removes the dependence of the Bayes factor on the prior scale"
+      },
+      {
+        "letter": "d",
+        "text": "once $\\tau$ is large, the posterior of $\\mu$ under $M_1$ barely depends on $\\tau$, whereas the Bayes factor keeps changing with $\\tau$"
+      },
+      {
+        "letter": "e",
+        "text": "an improper flat prior on $\\mu$ under $M_1$ gives a well-defined Bayes factor as long as the posterior of $\\mu$ is proper"
+      }
+    ],
+    "correct": [
+      "a",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Paradoxe de Lindley : l’alternative diffuse dilue sa masse, $p(y \\mid M_1) \\sim 1/\\tau$."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "C’est l’inverse."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Un prior vague mais propre reste sensible à son échelle."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Le posterior se stabilise, le facteur de Bayes non."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Un prior impropre a une constante arbitraire, donc le facteur de Bayes est indéfini."
+      }
+    },
+    "reference": "L05 – sensibilité du facteur de Bayes au prior (paradoxe de Lindley). Ex. 05 Part C p. 9 ; Exercices 05 Ex. 2.",
+    "rappel": "**Normal, $\\sigma^2$ connu, $M_0 : \\mu = 0$ contre** $M_1 : \\mu \\sim \\mathcal{N}(0,\\tau^2)$, avec $z = \\sqrt{n}\\,\\bar{y}/\\sigma$ et $g = n\\tau^2/\\sigma^2$ :\n\n$$\nBF_{01} = \\sqrt{1+g}\\ \\exp\\Bigl\\{-\\frac{z^2}{2} \\cdot \\frac{g}{1+g}\\Bigr\\}.\n$$\n\n- **Paradoxe de Lindley** : quand $\\tau \\to \\infty$, on a $g \\to \\infty$ et $BF_{01} \\approx \\sqrt{g}\\,e^{-z^2/2} \\to \\infty$, quelles que soient les données. L’alternative diffuse dilue sa masse ($p(y \\mid M_1) \\sim 1/\\tau$) et perd contre le null.\n- Le **posterior** de $\\mu$ sous $M_1$, lui, se stabilise vers $\\mathcal{N}(\\bar{y},\\sigma^2/n)$ : il ne dépend presque plus de $\\tau$, alors que le BF continue de bouger.\n- Un prior **vague mais propre** reste sensible à son échelle. Un prior **impropre** $p(\\mu) = c$ a une constante arbitraire qui se retrouve dans l’évidence, donc un BF *indéfini*, même si le posterior est propre."
+  },
+  {
+    "id": "5.4",
+    "week": 5,
+    "uncertain": false,
+    "question": "Model $M_1$ has a single parameter $\\varphi$ with prior $p(\\varphi \\mid M_1)$, and $M_0$ is $M_1$ restricted to $\\varphi = \\varphi_0$. The prior density at $\\varphi_0$ is $p(\\varphi_0 \\mid M_1) = 2$ and the posterior density there is $p(\\varphi_0 \\mid y,M_1) = 0.5$. By the Savage-Dickey density ratio, which statement is correct?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$BF_{01} = 4$, so the data favour the null model $M_0$"
+      },
+      {
+        "letter": "b",
+        "text": "$BF_{01} = 1.5$"
+      },
+      {
+        "letter": "c",
+        "text": "the Bayes factor cannot be obtained from these two numbers; the evidence of $M_0$ is also needed"
+      },
+      {
+        "letter": "d",
+        "text": "$BF_{01} = 2.5$"
+      },
+      {
+        "letter": "e",
+        "text": "$BF_{01} = 0.25$, so the data lowered the plausibility of $\\varphi_0$ and favour $M_1$ by 4 to 1"
+      }
+    ],
+    "correct": [
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Savage-Dickey : $BF_{01} = \\frac{p(\\varphi_0|y,M_1)}{p(\\varphi_0|M_1)} = \\frac{0.5}{2} = 0.25$, soit 4 contre 1 pour $M_1$. Piège : l’inverse (option a)."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Savage-Dickey : $BF_{01} = \\frac{p(\\varphi_0|y,M_1)}{p(\\varphi_0|M_1)} = \\frac{0.5}{2} = 0.25$, soit 4 contre 1 pour $M_1$. Piège : l’inverse (option a)."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Savage-Dickey : $BF_{01} = \\frac{p(\\varphi_0|y,M_1)}{p(\\varphi_0|M_1)} = \\frac{0.5}{2} = 0.25$, soit 4 contre 1 pour $M_1$. Piège : l’inverse (option a)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Savage-Dickey : $BF_{01} = \\frac{p(\\varphi_0|y,M_1)}{p(\\varphi_0|M_1)} = \\frac{0.5}{2} = 0.25$, soit 4 contre 1 pour $M_1$. Piège : l’inverse (option a)."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Savage-Dickey : $BF_{01} = \\frac{p(\\varphi_0|y,M_1)}{p(\\varphi_0|M_1)} = \\frac{0.5}{2} = 0.25$, soit 4 contre 1 pour $M_1$. Piège : l’inverse (option a)."
+      }
+    },
+    "reference": "L05 – rapport de Savage-Dickey. Ex. 05 Part D p. 11 ; Exercices 05 Ex. 3.",
+    "rappel": "**Savage–Dickey** : quand $M_0$ est $M_1$ restreint à $\\varphi = \\varphi_0$ (modèles emboîtés, priors des paramètres de nuisance compatibles),\n\n$$\nBF_{01} = \\frac{p(\\varphi_0 \\mid y,M_1)}{p(\\varphi_0 \\mid M_1)} = \\frac{\\text{densité a posteriori en } \\varphi_0}{\\text{densité a priori en } \\varphi_0}.\n$$\n\nSi les données font *monter* la densité en $\\varphi_0$, elles soutiennent $M_0$ ($BF_{01} > 1$) ; si elles la font *baisser*, elles soutiennent $M_1$. Ici $\\frac{0.5}{2} = 0.25$, donc $BF_{10} = 4$ : 4 contre 1 pour $M_1$. Deux nombres suffisent, pas besoin de calculer les évidences."
+  },
+  {
+    "id": "5.5",
+    "week": 5,
+    "uncertain": false,
+    "question": "Which statements about $\\mathrm{BIC}_M = -2\\ell(\\hat{\\theta}_{ML})+k\\log n$ and its relation to the other criteria are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "BIC approximates $-2\\log p(y \\mid M)$ with an $O(1)$ error, so it belongs with the Bayes factors and answers the « which model is true » question rather than the prediction question"
+      },
+      {
+        "letter": "b",
+        "text": "the penalty $k\\log n$ exceeds the AIC penalty $2k$ once $n \\ge 8$, so for prediction BIC over-penalizes complexity relative to AIC, WAIC and LOO"
+      },
+      {
+        "letter": "c",
+        "text": "BIC contains no prior because the Laplace approximation shows that the prior has no effect on the evidence"
+      },
+      {
+        "letter": "d",
+        "text": "BIC estimates the expected log predictive density of the posterior predictive distribution, as WAIC does"
+      },
+      {
+        "letter": "e",
+        "text": "the $O(1)$ error of BIC tends to zero as $n \\to \\infty$, so BIC converges to the exact value of $-2\\log p(y \\mid M)$"
+      }
+    ],
+    "correct": [
+      "a",
+      "b"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "BIC $\\approx -2\\log \\text{évidence} + O(1)$ : il est du côté « quel modèle est vrai »."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "$\\log n > 2$ dès que $n > e^2 \\approx 7.4$, donc pour $n \\ge 8$."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Le prior contribue un terme $O(1)$ qu’on *jette*, il n’a pas « aucun effet »."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "C’est WAIC ou LOO qui estiment l’elpd ; BIC vise l’évidence."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Une erreur $O(1)$ ne tend pas vers 0."
+      }
+    },
+    "reference": "L05 – BIC (approximation de Laplace) vs AIC, WAIC, LOO. Exercices 05 Ex. 6.",
+    "rappel": "**BIC par l’approximation de Laplace** :\n\n$$\n\\log p(y \\mid M) = \\ell(\\hat{\\theta})-\\frac{k}{2}\\log n+O(1) \\quad \\Rightarrow \\quad -2\\log p(y \\mid M) \\approx \\underbrace{-2\\ell(\\hat{\\theta})+k\\log n}_{\\text{BIC}}.\n$$\n\nL’$O(1)$ jeté contient le prior, $\\log\\det$ de l’information et des termes en $2\\pi$. Il **ne tend pas vers 0**, et le prior n’est pas « sans effet » : il est négligé.\n\n- BIC vise l’**évidence** : il est du côté des facteurs de Bayes et répond à « quel modèle est vrai ».\n- AIC $= -2\\ell+2k$, WAIC et LOO visent la **prédiction** (elpd).\n- $k\\log n > 2k \\iff n > e^2 \\approx 7.39$, donc pour $n \\ge 8$ le BIC pénalise plus la complexité que l’AIC."
+  },
+  {
+    "id": "5.7",
+    "week": 5,
+    "uncertain": false,
+    "question": "Two models $A$ and $B$ are compared by PSIS-LOO on $n = 100$ observations, with all $\\hat{k}_i < 0.5$. The pointwise differences $d_i = \\widehat{\\mathrm{elpd}}^A_{\\mathrm{loo},i}-\\widehat{\\mathrm{elpd}}^B_{\\mathrm{loo},i}$ have sum $\\Delta\\widehat{\\mathrm{elpd}} = 4.0$ and sample variance $\\mathrm{Var}[d_{1:n}] = 0.09$. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$\\mathrm{SE}(\\Delta\\widehat{\\mathrm{elpd}}) = 0.03$"
+      },
+      {
+        "letter": "b",
+        "text": "$\\mathrm{SE}(\\Delta\\widehat{\\mathrm{elpd}}) = 3.0$"
+      },
+      {
+        "letter": "c",
+        "text": "$\\mathrm{SE}(\\Delta\\widehat{\\mathrm{elpd}}) = 9.0$"
+      },
+      {
+        "letter": "d",
+        "text": "the difference lies within about 2 SE of zero, so no winner is declared and the simpler model or an average of the two is preferred"
+      },
+      {
+        "letter": "e",
+        "text": "increasing the number of posterior draws $S$ shrinks this SE and may make the difference decisive"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Mauvaises formules."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "$\\mathrm{SE} = \\sqrt{n\\,\\mathrm{Var}(d)} = \\sqrt{100 \\times 0.09} = 3$."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Mauvaises formules."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$4/3 \\approx 1.3$ SE, moins que 2 : pas de gagnant net."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Cette SE vient de la variabilité entre observations ($n$), pas du nombre de tirages $S$."
+      }
+    },
+    "reference": "L05 – comparaison LOO, erreur standard de $\\Delta\\mathrm{elpd}$. Ex. 05 « Comparison table » p. 18.",
+    "rappel": "**Comparer deux modèles par LOO** : $\\widehat{\\mathrm{elpd}}_{\\mathrm{loo}} = \\sum_i \\log p(y_i \\mid y_{-i})$. Différences ponctuelles $d_i$, puis $\\Delta = \\sum_i d_i$ et\n\n$$\n\\mathrm{SE}(\\Delta) = \\sqrt{n\\ \\mathrm{Var}(d_1,\\dots,d_n)}.\n$$\n\nOn travaille sur les différences ponctuelles parce qu’elles tiennent compte de la corrélation entre les deux modèles. Ici $\\sqrt{100 \\times 0.09} = 3$.\n\n- **Règle** : si $|\\Delta| < 2\\,\\mathrm{SE}$, il n’y a pas de gagnant net. On préfère le modèle le plus simple ou une combinaison (stacking). Ici $4/3 \\approx 1.3$ SE.\n- Cette SE vient de la variabilité *entre observations* (taille $n$), pas du nombre de tirages $S$ : augmenter $S$ n’y change rien."
+  },
+  {
+    "id": "5.8",
+    "week": 5,
+    "uncertain": false,
+    "question": "PSIS-LOO reports $\\hat{k}_i = 0.9$ for two observations and $\\hat{k}_i < 0.5$ for all others. What is the appropriate action?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "none, because the $\\hat{k}$ diagnostic only matters on average over all observations"
+      },
+      {
+        "letter": "b",
+        "text": "switch to WAIC, which does not suffer from this problem"
+      },
+      {
+        "letter": "c",
+        "text": "delete the two observations and recompute LOO on the remaining data"
+      },
+      {
+        "letter": "d",
+        "text": "compute exact LOO for the two observations by refitting the model without each of them, and inspect them as influential points"
+      },
+      {
+        "letter": "e",
+        "text": "treat the result as reliable, because $\\hat{k}_i = 0.9$ is below the value 1 at which the importance ratios lose their mean"
+      }
+    ],
+    "correct": [
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Avec $\\hat{k} > 0.7$, l’estimation PSIS de ces points n’est pas fiable : on refait le LOO exact pour eux (refit sans chacun) et on les examine comme points influents. WAIC échoue aussi dans ces cas, et supprimer des données n’est pas une solution."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Avec $\\hat{k} > 0.7$, l’estimation PSIS de ces points n’est pas fiable : on refait le LOO exact pour eux (refit sans chacun) et on les examine comme points influents. WAIC échoue aussi dans ces cas, et supprimer des données n’est pas une solution."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Avec $\\hat{k} > 0.7$, l’estimation PSIS de ces points n’est pas fiable : on refait le LOO exact pour eux (refit sans chacun) et on les examine comme points influents. WAIC échoue aussi dans ces cas, et supprimer des données n’est pas une solution."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "Avec $\\hat{k} > 0.7$, l’estimation PSIS de ces points n’est pas fiable : on refait le LOO exact pour eux (refit sans chacun) et on les examine comme points influents. WAIC échoue aussi dans ces cas, et supprimer des données n’est pas une solution."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Avec $\\hat{k} > 0.7$, l’estimation PSIS de ces points n’est pas fiable : on refait le LOO exact pour eux (refit sans chacun) et on les examine comme points influents. WAIC échoue aussi dans ces cas, et supprimer des données n’est pas une solution."
+      }
+    },
+    "reference": "L05 – diagnostic $\\hat{k}$ de PSIS-LOO. Ex. 05 Part E p. 15–17.",
+    "rappel": "**PSIS-LOO** : on approche $p(y_i \\mid y_{-i})$ par importance sampling avec les tirages du posterior complet, avec les ratios $r_i^{(s)} \\propto 1/p(y_i \\mid \\theta^{(s)})$. On lisse la queue des ratios par une loi de Pareto généralisée, dont le paramètre de forme $\\hat{k}_i$ sert de diagnostic :\n\n| $\\hat{k}_i$ | Lecture |\n|---|---|\n| $< 0.5$ | bon |\n| $0.5$–$0.7$ | acceptable |\n| $> 0.7$ | estimation non fiable (variance des ratios trop grande) |\n| $> 1$ | les ratios n’ont même plus de moyenne |\n\nUn $\\hat{k}$ élevé signale une **observation influente** : la retirer change beaucoup le posterior. Remède : refaire le **LOO exact** pour ces points (refit sans chacun) et les examiner. WAIC n’est pas une solution, il échoue aussi dans ces cas. Supprimer les données non plus."
+  },
+  {
+    "id": "5.10",
+    "week": 5,
+    "uncertain": false,
+    "question": "Which statements about Bayesian model averaging (BMA) and stacking are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the BMA weights are the posterior model probabilities $P(M_k \\mid y)$, so they inherit the prior sensitivity of the evidence"
+      },
+      {
+        "letter": "b",
+        "text": "the stacking weights are computed from the evidences $p(y \\mid M_k)$ of the candidate models"
+      },
+      {
+        "letter": "c",
+        "text": "in the M-open case the BMA weights spread out evenly over the candidates as $n \\to \\infty$, because no candidate is true"
+      },
+      {
+        "letter": "d",
+        "text": "the variance of the BMA predictive distribution is the average of the within-model predictive variances"
+      },
+      {
+        "letter": "e",
+        "text": "stacking chooses weights on the simplex that maximize the leave-one-out log score of the mixture, and it can give substantial weight to several candidates that are all wrong"
+      }
+    ],
+    "correct": [
+      "a",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Les poids BMA viennent des évidences, donc ils héritent de leur sensibilité au prior."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Le stacking utilise les densités prédictives LOO, pas les évidences."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "En M-open, la BMA se *concentre* sur un seul modèle (le plus proche en KL)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Il faut ajouter la dispersion entre modèles (loi de la variance totale)."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "C’est la définition du stacking et son avantage en M-open."
+      }
+    },
+    "reference": "L05 – BMA vs stacking, M-closed / M-open. Ex. 05 p. 19.",
+    "rappel": "**BMA** : $p(\\tilde{y} \\mid y) = \\sum_k P(M_k \\mid y)\\,p(\\tilde{y} \\mid y,M_k)$, avec $P(M_k \\mid y) \\propto p(M_k)\\,p(y \\mid M_k)$. Les poids viennent des **évidences**, donc ils héritent de leur sensibilité au prior.\n\n- **M-closed** (le vrai modèle est parmi les candidats) : la BMA met tout le poids sur le vrai modèle quand $n \\to \\infty$.\n- **M-open** (aucun candidat n’est vrai) : la BMA se **concentre** sur un seul modèle, le plus proche en KL, au lieu de répartir les poids.\n- **Variance** du mélange BMA $= \\sum_k w_k\\operatorname{Var}_k + \\sum_k w_k(\\mathrm{moy}_k-\\mathrm{moy})^2$ : variance intra-modèle $+$ dispersion entre modèles.\n\n**Stacking** : poids $w$ sur le simplexe qui maximisent le score LOO du mélange, $\\sum_i \\log\\sum_k w_k\\,p(y_i \\mid y_{-i},M_k)$. Il est orienté prédiction et peut garder plusieurs modèles tous faux s’ils se complètent."
+  },
+  {
+    "id": "6.1",
+    "week": 6,
+    "uncertain": false,
+    "question": "Let $\\hat{I}_S = \\frac{1}{S}\\sum_{s=1}^S h(\\theta^{(s)})$ be the Monte Carlo estimator of $I = \\mathbb{E}_f[h(\\theta)]$ built from iid draws $\\theta^{(1)},\\dots,\\theta^{(S)} \\sim f$. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the strong law of large numbers for $\\hat{I}_S$ requires $h$ to be smooth and $\\theta$ to be low-dimensional"
+      },
+      {
+        "letter": "b",
+        "text": "the Monte Carlo standard error $\\hat{\\sigma}_h/\\sqrt{S}$ can only be computed when the normalizing constant of $f$ is known"
+      },
+      {
+        "letter": "c",
+        "text": "the Monte Carlo CLT, $\\sqrt{S}(\\hat{I}_S-I) \\xrightarrow{d} \\mathcal{N}(0,\\sigma_h^2)$, needs only $\\sigma_h^2 = \\mathrm{Var}_f[h(\\theta)] < \\infty$"
+      },
+      {
+        "letter": "d",
+        "text": "the $1/\\sqrt{S}$ error rate deteriorates as the dimension of $\\theta$ grows, which is why grids are preferred in high dimension"
+      },
+      {
+        "letter": "e",
+        "text": "$\\hat{I}_S$ is unbiased for $I$ for every $S$, by linearity of expectation"
+      }
+    ],
+    "correct": [
+      "c",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "La LGN forte demande seulement $\\mathbb{E}|h| < \\infty$, sans condition de régularité ni de dimension."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "$\\hat{\\sigma}_h$ est l’écart-type empirique des $h(\\theta^{(s)})$ : pas besoin de la constante."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Le TCL demande une variance finie."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Le taux $1/\\sqrt{S}$ ne dépend pas de la dimension ; ce sont les grilles qui explosent en grande dimension."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Par linéarité de l’espérance."
+      }
+    },
+    "reference": "L06 – estimateur Monte Carlo, LGN, TCL, MCSE. Ex. 06 Part A p. 2.",
+    "rappel": "**Estimateur Monte Carlo** : $\\hat{I}_S = \\frac{1}{S}\\sum_s h(\\theta^{(s)})$ avec $\\theta^{(s)} \\overset{iid}{\\sim} f$, pour estimer $I = \\mathbb{E}_f[h(\\theta)]$.\n\n- **Sans biais** pour tout $S$ (linéarité de l’espérance).\n- **LGN forte** : $\\hat{I}_S \\to I$ p.s. dès que $\\mathbb{E}|h| < \\infty$, sans condition de régularité ni de dimension.\n- **TCL** : $\\sqrt{S}(\\hat{I}_S-I) \\to \\mathcal{N}(0,\\sigma_h^2)$ dès que $\\sigma_h^2 = \\mathrm{Var}_f[h] < \\infty$. D’où la **MCSE** $= \\hat{\\sigma}_h/\\sqrt{S}$, avec $\\hat{\\sigma}_h$ l’écart-type empirique des $h(\\theta^{(s)})$ : pas besoin de la constante de normalisation de $f$.\n- L’erreur en $1/\\sqrt{S}$ **ne dépend pas de la dimension** de $\\theta$. Ce sont les grilles qui explosent : $m^d$ points en dimension $d$."
+  },
+  {
+    "id": "6.2",
+    "week": 6,
+    "uncertain": false,
+    "question": "A report states: $\\mathbb{E}[\\theta \\mid y] = 0.66$ (posterior sd 0.08; MCSE 0.001, $S = 10\\,000$). Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the posterior sd 0.08 measures uncertainty about $\\theta$ given the data; it shrinks with more data $n$ and is unaffected by the number of draws $S$"
+      },
+      {
+        "letter": "b",
+        "text": "increasing $S$ to $1\\,000\\,000$ would shrink the posterior sd to about 0.008"
+      },
+      {
+        "letter": "c",
+        "text": "a 95% credible interval for $\\theta$ is approximately $0.66 \\pm 1.96 \\times 0.001$"
+      },
+      {
+        "letter": "d",
+        "text": "increasing $S$ to $1\\,000\\,000$ would shrink the MCSE to about 0.0001"
+      },
+      {
+        "letter": "e",
+        "text": "the MCSE belongs inside the credible interval, because it is part of the posterior uncertainty about $\\theta$"
+      }
+    ],
+    "correct": [
+      "a",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Le posterior sd est une propriété du posterior (qui dépend de $n$), pas de la simulation."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "$S$ ne change pas le posterior sd."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "L’intervalle se construit avec le posterior sd : $0.66 \\pm 1.96 \\times 0.08$."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$S \\times 100$ divise la MCSE par 10."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "La MCSE mesure le bruit numérique, ce n’est pas de l’incertitude sur $\\theta$."
+      }
+    },
+    "reference": "L06 – posterior sd vs MCSE, la loi en $1/\\sqrt{S}$.",
+    "rappel": "Deux incertitudes à ne pas confondre :\n\n| | Posterior sd | MCSE |\n|---|---|---|\n| Mesure | l’incertitude sur $\\theta$ sachant les données | le bruit numérique de l’estimation de $\\mathbb{E}[\\theta \\mid y]$ |\n| Formule | $\\sqrt{\\mathrm{Var}(\\theta \\mid y)}$ | $\\approx \\mathrm{sd}/\\sqrt{S}$ (tirages iid) |\n| Baisse avec | la quantité de données $n$ | le nombre de tirages $S$ |\n| Sert à | construire l’intervalle de crédibilité | savoir combien de chiffres sont fiables |\n\nIci $0.08/\\sqrt{10\\,000} = 0.0008 \\approx 0.001$. Avec $100\\times$ plus de tirages, la MCSE est divisée par 10 (soit 0.0001) et le posterior sd ne bouge pas. L’IC à 95% vaut $\\approx 0.66 \\pm 1.96 \\times 0.08$."
+  },
+  {
+    "id": "6.4",
+    "week": 6,
+    "uncertain": false,
+    "question": "The target is $Z \\sim \\mathcal{N}(0,1)$ truncated to $[1,\\infty)$, and $\\Phi(1) = 0.84$. Which statements about sampling this distribution are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "naive rejection (draw from $\\mathcal{N}(0,1)$, keep the draws that are $\\ge 1$) accepts a fraction 0.84 of the draws"
+      },
+      {
+        "letter": "b",
+        "text": "naive rejection accepts a fraction 0.16 of the draws, about 6 proposals per accepted draw"
+      },
+      {
+        "letter": "c",
+        "text": "the draws kept by naive rejection follow the truncated distribution only approximately"
+      },
+      {
+        "letter": "d",
+        "text": "$X = 1+\\Phi^{-1}(U)$ with $U \\sim U(0,1)$ is an exact draw from the truncated distribution"
+      },
+      {
+        "letter": "e",
+        "text": "$X = \\Phi^{-1}(0.84+0.16\\,U)$ with $U \\sim U(0,1)$ is an exact draw from the truncated distribution, and every draw is kept"
+      }
+    ],
+    "correct": [
+      "b",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "On accepte $P(Z \\ge 1) = 1-0.84 = 0.16$."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "$1/0.16 \\approx 6.25$ propositions par tirage accepté."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Le rejet est *exact*."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Cela décale une $\\mathcal{N}(0,1)$, sans la tronquer."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Inversion restreinte : $U' = 0.84+0.16U \\sim U(0.84,1)$, donc $\\Phi^{-1}(U') \\ge 1$."
+      }
+    },
+    "reference": "L06 – rejet naïf et méthode d’inversion. Exercices 06 Ex. 1.",
+    "rappel": "**Rejet naïf** : tirer $Z \\sim \\mathcal{N}(0,1)$ et garder si $Z \\ge 1$. Taux d’acceptation $= P(Z \\ge 1) = 1-\\Phi(1) = 0.16$, soit environ $1/0.16 \\approx 6$ propositions par tirage gardé. Les tirages gardés suivent *exactement* la loi tronquée.\n\n**Inversion** : si $U \\sim U(0,1)$, alors $F^{-1}(U) \\sim F$. Pour la loi tronquée à $[a,\\infty)$, $F_{\\mathrm{tr}}(x) = \\frac{\\Phi(x)-\\Phi(a)}{1-\\Phi(a)}$, donc\n\n$$\nX = \\Phi^{-1}\\bigl(\\Phi(a)+(1-\\Phi(a))\\,U\\bigr) = \\Phi^{-1}(0.84+0.16\\,U).\n$$\n\nLe tirage est exact et rien n’est rejeté. En revanche, $1+\\Phi^{-1}(U)$ ne fait que *décaler* une Normale, il ne la tronque pas."
+  },
+  {
+    "id": "6.6",
+    "week": 6,
+    "uncertain": false,
+    "question": "Which statement about rejection sampling with target $\\tilde{f} = cf$ and proposal $g$ is true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the constant $c$ must be computed before the algorithm can run"
+      },
+      {
+        "letter": "b",
+        "text": "the expected number of proposals per accepted draw decreases as the dimension of $\\theta$ grows"
+      },
+      {
+        "letter": "c",
+        "text": "a proposal with lighter tails than $f$ is acceptable as long as $M$ is chosen large enough"
+      },
+      {
+        "letter": "d",
+        "text": "multiplying $\\tilde{f}$ by a positive constant changes the distribution of the accepted draws"
+      },
+      {
+        "letter": "e",
+        "text": "the accepted draws are exact iid draws from $f$, with no weights and no approximation"
+      }
+    ],
+    "correct": [
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "Seul $\\tilde{f}$ non normalisé est nécessaire."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Il *augmente* (souvent de façon exponentielle) avec la dimension."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Si $g$ a des queues plus légères, aucun $M$ fini ne borne $f/g$."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Multiplier par une constante change seulement $M$ et le taux d’acceptation."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Les draws acceptés sont exacts et iid."
+      }
+    },
+    "reference": "L06 – échantillonnage par rejet. Ex. 06 Part B p. 5.",
+    "rappel": "**Rejet** : cible $\\tilde{f} = c\\,f$ (non normalisée), proposition $g$, constante $M$ telle que $\\tilde{f} \\le Mg$ *partout*. Tirer $\\theta' \\sim g$ et $u \\sim U(0,1)$, accepter si $u \\le \\frac{\\tilde{f}(\\theta')}{Mg(\\theta')}$.\n\n- Les tirages acceptés sont **exactement iid de $f$**, sans poids ni approximation. Seul $\\tilde{f}$ est nécessaire : $c$ est inconnue et c’est sans importance.\n- Taux d’acceptation $= c/M$. Multiplier $\\tilde{f}$ par une constante change seulement ce taux, pas la loi acceptée.\n- $g$ doit avoir des **queues au moins aussi lourdes** que $f$, sinon $f/g \\to \\infty$ et aucun $M$ fini n’existe.\n- En grande dimension, le taux d’acceptation chute (souvent exponentiellement)."
+  },
+  {
+    "id": "6.7",
+    "week": 6,
+    "uncertain": false,
+    "question": "The target $f$ is approximately $\\mathcal{N}(0,1)$. Which proposals $g$ are safe for importance sampling, satisfying both the support condition and the tail rule?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "a Student-$t_4$ distribution with center 0 and scale 1"
+      },
+      {
+        "letter": "b",
+        "text": "$\\mathcal{N}(0,0.5^2)$"
+      },
+      {
+        "letter": "c",
+        "text": "$\\mathcal{N}(0,2^2)$"
+      },
+      {
+        "letter": "d",
+        "text": "the uniform distribution $U(-4,4)$"
+      },
+      {
+        "letter": "e",
+        "text": "$\\mathcal{N}(0,1)$ truncated to $[-3,3]$"
+      }
+    ],
+    "correct": [
+      "a",
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "V",
+        "text": "Support $\\mathbb{R}$, queues plus lourdes que la normale."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Queues plus légères : les poids explosent."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "Support $\\mathbb{R}$ et queues plus larges."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "Le support ne couvre pas $|\\theta| > 4$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "Même problème de support."
+      }
+    },
+    "reference": "L06 – importance sampling : condition de support et règle des queues. Ex. 06 Part C p. 8.",
+    "rappel": "**Importance sampling** : $\\mathbb{E}_f[h] = \\mathbb{E}_g\\bigl[h\\,\\frac{f}{g}\\bigr] \\approx \\frac{1}{S}\\sum_s h(\\theta^{(s)})\\,w(\\theta^{(s)})$, avec $\\theta^{(s)} \\sim g$ et $w = f/g$.\n\n- **Condition de support** : $g > 0$ partout où $hf \\ne 0$. Sinon des régions ne sont jamais visitées et l’estimateur est biaisé (cas de $U(-4,4)$ ou d’une Normale tronquée pour une cible sur $\\mathbb{R}$).\n- **Règle des queues** : $g$ doit avoir des queues **au moins aussi lourdes** que $f$. Si $g$ a des queues plus légères, $w = f/g$ explose dans les queues : quelques poids énormes et une variance infinie (cas de $\\mathcal{N}(0,0.5^2)$).\n\nChoix sûrs pour une cible $\\approx \\mathcal{N}(0,1)$ : une Student-$t$ ou une Normale plus large comme $\\mathcal{N}(0,2^2)$."
+  },
+  {
+    "id": "6.8",
+    "week": 6,
+    "uncertain": false,
+    "question": "A small tail probability $P(\\theta > c)$ under $f$ is to be estimated by importance sampling. The minimum-variance proposal $g^*$ is proportional to:",
+    "options": [
+      {
+        "letter": "a",
+        "text": "$f(\\theta)$ itself, so that all weights equal 1"
+      },
+      {
+        "letter": "b",
+        "text": "the prior $p(\\theta)$, so that the weights reduce to the likelihood"
+      },
+      {
+        "letter": "c",
+        "text": "$\\mathbf{1}(\\theta > c)f(\\theta)$, the target restricted to the tail event"
+      },
+      {
+        "letter": "d",
+        "text": "$1/f(\\theta)$, so that the proposal visits the regions where $f$ is small"
+      },
+      {
+        "letter": "e",
+        "text": "a uniform density on a wide interval, so that no region is missed"
+      }
+    ],
+    "correct": [
+      "c"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "$g^* \\propto |h|f$ avec $h = \\mathbf{1}(\\theta > c)$, donc $g^* \\propto \\mathbf{1}(\\theta > c)f(\\theta)$ : la loi conditionnelle à la queue (variance nulle)."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "$g^* \\propto |h|f$ avec $h = \\mathbf{1}(\\theta > c)$, donc $g^* \\propto \\mathbf{1}(\\theta > c)f(\\theta)$ : la loi conditionnelle à la queue (variance nulle)."
+      },
+      "c": {
+        "verdict": "V",
+        "text": "$g^* \\propto |h|f$ avec $h = \\mathbf{1}(\\theta > c)$, donc $g^* \\propto \\mathbf{1}(\\theta > c)f(\\theta)$ : la loi conditionnelle à la queue (variance nulle)."
+      },
+      "d": {
+        "verdict": "F",
+        "text": "$g^* \\propto |h|f$ avec $h = \\mathbf{1}(\\theta > c)$, donc $g^* \\propto \\mathbf{1}(\\theta > c)f(\\theta)$ : la loi conditionnelle à la queue (variance nulle)."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "$g^* \\propto |h|f$ avec $h = \\mathbf{1}(\\theta > c)$, donc $g^* \\propto \\mathbf{1}(\\theta > c)f(\\theta)$ : la loi conditionnelle à la queue (variance nulle)."
+      }
+    },
+    "reference": "L06 – théorème de la proposition optimale $g^* \\propto |h|f$. Exercices 06 Ex. 3 et Ex. 4.",
+    "rappel": "**Proposition optimale** : parmi les $g$ valides, la variance IS est minimale pour\n\n$$\ng^*(\\theta) = \\frac{|h(\\theta)|\\,f(\\theta)}{\\int |h|f}.\n$$\n\nPour une probabilité de queue, $h = \\mathbf{1}(\\theta > c)$, donc $g^* \\propto \\mathbf{1}(\\theta > c)\\,f(\\theta)$ : la loi de $\\theta$ *conditionnée à la queue*. Quand $h \\ge 0$, chaque terme $hf/g^*$ vaut alors exactement $I$ et la variance est nulle. $g^*$ dépend de l’inconnue $I$, donc en pratique on l’approche (ex. une exponentielle décalée sur $[c,\\infty)$, Exercices 06 Ex. 3)."
+  },
+  {
+    "id": "6.9",
+    "week": 6,
+    "uncertain": false,
+    "question": "Self-normalized importance sampling with $S = 4$ draws gives raw weights $\\tilde{w} = (3,1,1,1)$ and function values $h = (0,4,8,12)$ at the four draws. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the self-normalized estimate of $\\mathbb{E}_f[h]$ is 6"
+      },
+      {
+        "letter": "b",
+        "text": "the self-normalized estimate of $\\mathbb{E}_f[h]$ is 4"
+      },
+      {
+        "letter": "c",
+        "text": "the effective sample size is 4, because all four draws are used"
+      },
+      {
+        "letter": "d",
+        "text": "the effective sample size is 3"
+      },
+      {
+        "letter": "e",
+        "text": "the estimate cannot be computed without the normalizing constant of $f$"
+      }
+    ],
+    "correct": [
+      "b",
+      "d"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "6 est la moyenne *non pondérée*."
+      },
+      "b": {
+        "verdict": "V",
+        "text": "$\\frac{3 \\cdot 0+4+8+12}{6} = \\frac{24}{6} = 4$."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Les poids sont inégaux, donc l’ESS est inférieure à 4."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$\\mathrm{ESS} = \\frac{(\\sum \\tilde{w})^2}{\\sum \\tilde{w}^2} = \\frac{36}{12} = 3$."
+      },
+      "e": {
+        "verdict": "F",
+        "text": "L’auto-normalisation sert justement à se passer de la constante."
+      }
+    },
+    "reference": "L06 – IS auto-normalisé, ESS. Ex. 06 Part C p. 8–11.",
+    "rappel": "**IS auto-normalisé** : quand $f$ n’est connue qu’à une constante près, on prend des poids bruts $\\tilde{w}_s = \\tilde{f}(\\theta^{(s)})/g(\\theta^{(s)})$ et\n\n$$\n\\hat{\\mathbb{E}}_f[h] = \\frac{\\sum_s \\tilde{w}_s\\,h(\\theta^{(s)})}{\\sum_s \\tilde{w}_s}, \\qquad \\mathrm{ESS} = \\frac{(\\sum_s \\tilde{w}_s)^2}{\\sum_s \\tilde{w}_s^2} \\in [1,S].\n$$\n\nLa constante se simplifie entre numérateur et dénominateur. L’ESS vaut $S$ si les poids sont égaux et 1 si un seul poids domine. Ici $\\hat{\\mathbb{E}} = \\frac{3 \\cdot 0+1 \\cdot 4+1 \\cdot 8+1 \\cdot 12}{6} = 4$ et $\\mathrm{ESS} = \\frac{6^2}{9+1+1+1} = 3$. La valeur 6 serait la moyenne *non pondérée*."
+  },
+  {
+    "id": "6.11",
+    "week": 6,
+    "uncertain": false,
+    "question": "A bootstrap particle filter runs with $S = 3$ particles. After time $t-1$ the normalized weights are $(0.5,0.25,0.25)$ and no resampling was done. The particles are propagated and the new observation $y_t$ has likelihood values $p(y_t \\mid x_t^{(s)}) = (0.2,0.4,0.4)$ at the three propagated particles. Which statements are true?",
+    "options": [
+      {
+        "letter": "a",
+        "text": "the new normalized weights are $(0.2,0.4,0.4)$, proportional to the likelihood values alone"
+      },
+      {
+        "letter": "b",
+        "text": "the new normalized weights are $(0.5,0.25,0.25)$, because weights change only at resampling steps"
+      },
+      {
+        "letter": "c",
+        "text": "if a resampling step were performed now, the weights after it would be proportional to the likelihood values"
+      },
+      {
+        "letter": "d",
+        "text": "the new normalized weights are $(1/3,1/3,1/3)$"
+      },
+      {
+        "letter": "e",
+        "text": "the effective sample size after the update is 3, so with the standard trigger $\\mathrm{ESS} < S/2$ no resampling takes place"
+      }
+    ],
+    "correct": [
+      "d",
+      "e"
+    ],
+    "explanations": {
+      "a": {
+        "verdict": "F",
+        "text": "On multiplie les *anciens* poids par la vraisemblance (pas de rééchantillonnage avant)."
+      },
+      "b": {
+        "verdict": "F",
+        "text": "Les poids sont mis à jour à chaque observation."
+      },
+      "c": {
+        "verdict": "F",
+        "text": "Après un rééchantillonnage, tous les poids valent $1/S$."
+      },
+      "d": {
+        "verdict": "V",
+        "text": "$0.5 \\cdot 0.2 = 0.25 \\cdot 0.4 = 0.25 \\cdot 0.4 = 0.1$, donc après normalisation $(1/3,1/3,1/3)$."
+      },
+      "e": {
+        "verdict": "V",
+        "text": "Des poids égaux donnent $\\mathrm{ESS} = 3 \\ge S/2 = 1.5$, donc pas de rééchantillonnage."
+      }
+    },
+    "reference": "L06 – filtre particulaire bootstrap (SMC), ESS et rééchantillonnage. Ex. 06 Part E p. 15–18 ; Exercices 06 Ex. 6.",
+    "rappel": "**Filtre particulaire bootstrap (SMC)** pour un modèle d’état $x_t \\mid x_{t-1}$, $y_t \\mid x_t$. On suit $S$ particules $x_t^{(s)}$ avec des poids $w_t^{(s)}$. À chaque pas :\n\n1. **Propager** : $x_t^{(s)} \\sim p(x_t \\mid x_{t-1}^{(s)})$ (la proposition est la dynamique).\n2. **Pondérer** : $w_t^{(s)} \\propto w_{t-1}^{(s)} \\times p(y_t \\mid x_t^{(s)})$, puis normaliser. On multiplie les *anciens* poids par la vraisemblance.\n3. **Rééchantillonner si** $\\mathrm{ESS} = 1/\\sum_s (w_t^{(s)})^2 < S/2$ : tirer $S$ particules avec probas $w_t^{(s)}$. Après le rééchantillonnage, **tous les poids valent** $1/S$.\n\nIci $0.5 \\times 0.2 = 0.25 \\times 0.4 = 0.25 \\times 0.4 = 0.1$, donc les nouveaux poids sont $(\\frac{1}{3},\\frac{1}{3},\\frac{1}{3})$ et l’ESS vaut $3 \\ge 1.5$ : pas de rééchantillonnage. Sans rééchantillonnage sur la durée, les poids dégénèrent (une particule porte presque tout)."
+  }
+]
